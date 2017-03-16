@@ -1,0 +1,7 @@
+system:
+    default:
+        css:
+            files:
+                - %smileezuicampaign.public_dir%/css/views/fields/edit/campaign.css
+                - %smileezuicampaign.public_dir%/css/views/uicampaign.css
+                - %smileezuicampaign.public_dir%/css/platform.css

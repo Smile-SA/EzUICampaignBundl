@@ -1,0 +1,8 @@
+parameters:
+    ezpublish.fieldType.indexable.smileezuicampaign.class: Smile\EzUICampaignBundle\FieldType\Campaign\SearchField
+
+services:
+    ezpublish.fieldType.indexable.smileezuicampaign:
+        class: "%ezpublish.fieldType.indexable.smileezuicampaign.class%"
+        tags:
+            - {name: ezpublish.fieldType.indexable, alias: smileezuicampaign}

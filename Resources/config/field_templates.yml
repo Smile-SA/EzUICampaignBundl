@@ -1,0 +1,9 @@
+system:
+    default:
+        fielddefinition_edit_templates:
+            -
+                template: "SmileEzUICampaignBundle::field_types.html.twig"
+        field_templates:
+            -
+                template: "SmileEzUICampaignBundle::content_fields.html.twig"
+

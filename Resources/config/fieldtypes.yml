@@ -1,0 +1,19 @@
+parameters:
+    ezpublish.fieldType.smileezuicampaign.class: Smile\EzUICampaignBundle\FieldType\Campaign\Type
+    ezrepoforms.field_type.form_mapper.smileezuicampaign.class: Smile\EzUICampaignBundle\FieldType\Campaign\FormMapper
+
+services:
+    ezpublish.fieldType.smileezuicampaign:
+        class: "%ezpublish.fieldType.smileezuicampaign.class%"
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: smileezuicampaign}
+
+    ezrepoforms.field_type.form_mapper.smileezuicampaign:
+        class: "%ezrepoforms.field_type.form_mapper.smileezuicampaign.class%"
+        tags:
+            - { name: ez.fieldFormMapper.definition, fieldType: smileezuicampaign }
+            - { name: ez.fieldFormMapper.value, fieldType: smileezuicampaign }
+        arguments:
+            - "@ezpublish.api.service.field_type"
+

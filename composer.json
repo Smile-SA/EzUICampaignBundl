@@ -1,0 +1,21 @@
+{
+  "name": "smile/ez-uicampaign-bundle",
+  "type": "ezplatform-bundle",
+  "description": "Campaign for eZ Platform 6.x",
+  "license": ["GPL-3.0"],
+  "authors": [
+    {
+      "name": "Smile SA",
+      "homepage": "http://www.smile.fr/"
+    }
+  ],
+  "require": {
+    "php": "~5.6|~7.0",
+    "ezsystems/ezpublish-kernel": "~6.7",
+    "welp/mailchimp-bundle": "~1.1"
+  },
+  "autoload": {
+    "psr-0": { "Smile\\EzUICampaignBundle": "" }
+  },
+  "target-dir": "Smile/EzUICampaignBundle"
+}

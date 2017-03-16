@@ -1,0 +1,13 @@
+parameters:
+    smile.campaign.controller.campaign.class: Smile\EzUICampaignBundle\Controller\CampaignController
+
+    smile.campaign.tabs: [campaigns, lists]
+
+services:
+    smile.campaign.controller.campaign:
+        class: %smile.campaign.controller.campaign.class%
+        arguments:
+            - %smile.campaign.tabs%
+        parent: ezpublish.controller.base
+
+

@@ -1,0 +1,9 @@
+parameters:
+    ezpublish.fieldType.smileezuicampaign.converter.class: Smile\EzUICampaignBundle\Persistence\Content\FieldValue\Converter\CampaignConverter
+
+services:
+    ezpublish.fieldType.smilecampaigncampaign.converter:
+        class: "%ezpublish.fieldType.smileezuicampaign.converter.class%"
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: smileezuicampaign, lazy: true, callback: '::create'}
+

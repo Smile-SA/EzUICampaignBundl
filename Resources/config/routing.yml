@@ -1,0 +1,5 @@
+smileezcampaign_campaign:
+    path: /campaign/{tabItem}/tab
+    defaults: { _controller: smile.campaign.controller.campaign:campaignAction, tabItem: "campaigns" }
+    requirements:
+        tabItem: "[a-z]+"
