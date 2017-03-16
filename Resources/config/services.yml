@@ -1,5 +1,7 @@
 parameters:
     smile.campaign.controller.campaign.class: Smile\EzUICampaignBundle\Controller\CampaignController
+    smile.campaign.controller.campaigns.class: Smile\EzUICampaignBundle\Controller\CampaignsController
+    smile.campaign.controller.lists.class: Smile\EzUICampaignBundle\Controller\ListsController
 
     smile.campaign.tabs: [campaigns, lists]
 
@@ -9,5 +11,18 @@ services:
         arguments:
             - %smile.campaign.tabs%
         parent: ezpublish.controller.base
+
+    smile.campaign.controller.campaigns:
+        class: %smile.campaign.controller.campaigns.class%
+        arguments:
+            - @welp_mailchimp.mailchimp_master
+        parent: ezpublish.controller.base
+
+    smile.campaign.controller.lists:
+        class: %smile.campaign.controller.lists.class%
+        arguments:
+            - @welp_mailchimp.mailchimp_master
+        parent: ezpublish.controller.base
+
 
 
