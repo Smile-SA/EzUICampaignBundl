@@ -14,7 +14,7 @@ YUI.add('smileez-uicampaign-navigationplugin', function (Y) {
                         name: "smileezuiCampaignNavigation"
                     }
                 }
-            }, 'admin');
+            }, 'platform');
         },
     }, {
         NS: 'smileezuiCampaignNavigation'
