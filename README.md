@@ -62,3 +62,23 @@ php app/console assets:install --symlink web
 
 php app/console assetic:dump
 ```
+
+## TODO
+
+* create campaign folder
+* create campaign
+* new campaign
+* edit campaign
+* delete campaign
+* campaign pagination
+* send campaign
+* send campaign test
+* create list folder
+* create list
+* new list
+* edit list
+* delete list
+* list pagination
+* campaign fieldtype
+* campaign fieldtype front view
+* campaign subscribe
