@@ -2,15 +2,23 @@
 
 namespace Smile\EzUICampaignBundle\Controller;
 
-use DrewM\MailChimp\MailChimp;
+use Smile\EzUICampaignBundle\Service\ListsFolderService;
+use Smile\EzUICampaignBundle\Service\ListsService;
 
 class ListsController extends AbstractCampaignController
 {
-    /** @var MailChimp $mailChimpService mailchimp service */
-    protected $mailChimpService;
+    /** @var ListsService $listsService */
+    protected $listsService;
 
-    public function __construct(MailChimp $mailChimpService)
+    /** @var ListsFolderService $listsFolderService */
+    protected $listsFolderService;
+
+    public function __construct(
+        ListsService $listsService,
+        ListsFolderService $listsFolderService
+    )
     {
-        $this->mailChimpService = $mailChimpService;
+        $this->listsService = $listsService;
+        $this->listsFolderService = $listsFolderService;
     }
 }

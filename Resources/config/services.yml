@@ -1,4 +1,11 @@
 parameters:
+    smile.campaign.service.campaign.class: Smile\EzUICampaignBundle\Service\CampaignService
+    smile.campaign.service.campaigns_folder.class: Smile\EzUICampaignBundle\Service\CampaignsFolderService
+    smile.campaign.service.campaigns.class: Smile\EzUICampaignBundle\Service\CampaignsService
+    smile.campaign.service.list.class: Smile\EzUICampaignBundle\Service\ListsService
+    smile.campaign.service.lists_folder.class: Smile\EzUICampaignBundle\Service\ListsFolderService
+    smile.campaign.service.lists.class: Smile\EzUICampaignBundle\Service\ListsService
+
     smile.campaign.controller.campaign.class: Smile\EzUICampaignBundle\Controller\CampaignController
     smile.campaign.controller.campaigns.class: Smile\EzUICampaignBundle\Controller\CampaignsController
     smile.campaign.controller.lists.class: Smile\EzUICampaignBundle\Controller\ListsController
@@ -6,22 +13,58 @@ parameters:
     smile.campaign.tabs: [campaigns, lists]
 
 services:
+    # Services
+    smile.campaign.service.campaign:
+        class: %smile.campaign.service.campaign.class%
+        arguments:
+            - @welp_mailchimp.mailchimp_master
+
+    smile.campaign.service.campaigns_folder:
+        class: %smile.campaign.service.campaigns_folder.class%
+        arguments:
+            - @welp_mailchimp.mailchimp_master
+
+    smile.campaign.service.campaigns:
+        class: %smile.campaign.service.campaigns.class%
+        arguments:
+            - @welp_mailchimp.mailchimp_master
+
+    smile.campaign.service.list:
+        class: %smile.campaign.service.list.class%
+        arguments:
+            - @welp_mailchimp.mailchimp_master
+
+    smile.campaign.service.lists_folder:
+        class: %smile.campaign.service.lists_folder.class%
+        arguments:
+            - @welp_mailchimp.mailchimp_master
+
+    smile.campaign.service.lists:
+        class: %smile.campaign.service.lists.class%
+        arguments:
+            - @welp_mailchimp.mailchimp_master
+
+    # Controllers
     smile.campaign.controller.campaign:
         class: %smile.campaign.controller.campaign.class%
         arguments:
             - %smile.campaign.tabs%
+            - @smile.campaign.service.campaigns
+            - @smile.campaign.service.lists
         parent: ezpublish.controller.base
 
     smile.campaign.controller.campaigns:
         class: %smile.campaign.controller.campaigns.class%
         arguments:
-            - @welp_mailchimp.mailchimp_master
+            - @smile.campaign.service.campaigns
+            - @smile.campaign.service.campaigns_folder
         parent: ezpublish.controller.base
 
     smile.campaign.controller.lists:
         class: %smile.campaign.controller.lists.class%
         arguments:
-            - @welp_mailchimp.mailchimp_master
+            - @smile.campaign.service.lists
+            - @smile.campaign.service.lists_folder
         parent: ezpublish.controller.base
 
 

@@ -2,6 +2,8 @@
 
 namespace Smile\EzUICampaignBundle\Controller;
 
+use Smile\EzUICampaignBundle\Service\CampaignsService;
+use Smile\EzUICampaignBundle\Service\ListsService;
 use Symfony\Component\HttpFoundation\Response;
 
 class CampaignController extends AbstractCampaignController
@@ -9,14 +11,26 @@ class CampaignController extends AbstractCampaignController
     /** @var string[] tab item names */
     protected $tabItems;
 
+    /** @var CampaignsService $campaignsService */
+    protected $campaignsService;
+
+    /** @var ListsService $listsService */
+    protected $listsService;
+
     /**
      * CampaignController constructor.
      *
      * @param string[] $tabItems tab item names
      */
-    public function __construct($tabItems)
+    public function __construct(
+        $tabItems,
+        CampaignsService $campaignsService,
+        ListsService $listsService
+    )
     {
         $this->tabItems = $tabItems;
+        $this->campaignsService = $campaignsService;
+        $this->listsService = $listsService;
     }
 
     /**
@@ -60,7 +74,9 @@ class CampaignController extends AbstractCampaignController
      */
     protected function tabItemCampaigns($paramsTwig)
     {
-        return array();
+        $params['campaigns'] = $this->campaignsService->get(0);
+
+        return $params;
     }
 
     /**
@@ -69,6 +85,8 @@ class CampaignController extends AbstractCampaignController
      */
     protected function tabItemLists($paramsTwig)
     {
-        return array();
+        $params['lists'] = $this->listsService->get(0);
+
+        return $params;
     }
 }

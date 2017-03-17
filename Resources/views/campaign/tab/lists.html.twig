@@ -1,0 +1,27 @@
+
+<table class="ezconf-list pure-table pure-table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Date created</th>
+        <th>Member count</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for list in params.lists.lists %}
+        <tr>
+            <td>{{ list.id }}</td>
+            <td>{{ list.name }}</td>
+            <td>{{ list.date_created }}</td>
+            <td>{{ list.stats.member_count }}</td>
+            <td></td>
+            <td></td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

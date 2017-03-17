@@ -1,0 +1,35 @@
+
+<table class="ezconf-list pure-table pure-table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Subject</th>
+            <th>Create time</th>
+            <th>Status</th>
+            <th>Emails sent</th>
+            <th>Send time</th>
+            <th>List name</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for campaign in params.campaigns.campaigns %}
+            <tr>
+                <td>{{ campaign.id }}</td>
+                <td>{{ campaign.settings.title }}</td>
+                <td>{{ campaign.settings.subject_line }}</td>
+                <td>{{ campaign.create_time }}</td>
+                <td>{{ campaign.status }}</td>
+                <td>{{ campaign.emails_sent }}</td>
+                <td>{{ campaign.send_time }}</td>
+                <td>{{ campaign.recipients.list_name }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
