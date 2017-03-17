@@ -4,6 +4,7 @@ namespace Smile\EzUICampaignBundle\Controller;
 
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CampaignController extends AbstractCampaignController
@@ -88,5 +89,10 @@ class CampaignController extends AbstractCampaignController
         $params['lists'] = $this->listsService->get(0);
 
         return $params;
+    }
+
+    public function viewAction(Request $request, $id)
+    {
+
     }
 }

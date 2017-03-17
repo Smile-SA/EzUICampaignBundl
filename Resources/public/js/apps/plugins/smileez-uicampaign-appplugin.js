@@ -17,6 +17,15 @@ YUI.add('smileez-uicampaign-appplugin', function (Y) {
                 sideViews: {'navigationHub': true, 'discoveryBar': false},
                 callbacks: ['open', 'checkUser', 'handleSideViews', 'handleMainView'],
             });
+
+            app.route({
+                name: "smileezuiCampaignNavigation",
+                path: "/campaign/campaign/new",
+                view: "smileezuicampaignView",
+                service: Y.smileEzUICampaign.ViewService,
+                sideViews: {'navigationHub': true, 'discoveryBar': false},
+                callbacks: ['open', 'checkUser', 'handleSideViews', 'handleMainView'],
+            });
         }
     }, {
         NS: 'smileezuicampaignTypeApp'

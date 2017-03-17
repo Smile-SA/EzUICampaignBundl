@@ -19,7 +19,7 @@
         {% for campaign in params.campaigns.campaigns %}
             <tr>
                 <td>{{ campaign.id }}</td>
-                <td>{{ campaign.settings.title }}</td>
+                <td><a href="{{ path("smileezcampaign_campaign_view", {"id": campaign.id}) }}">{{ campaign.settings.title }}</a></td>
                 <td>{{ campaign.settings.subject_line }}</td>
                 <td>{{ campaign.create_time }}</td>
                 <td>{{ campaign.status }}</td>
@@ -33,3 +33,8 @@
 
     </tbody>
 </table>
+
+<p class="ez-table-data-buttons">
+    <a href="{{ path('smileezcampaign_campaigns_new') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'compaign.new'|trans }}</a>
+    <a href="{{ path('smileezcampaign_campaigns_folder_new') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'compaign.folder.new'|trans }}</a>
+</p>

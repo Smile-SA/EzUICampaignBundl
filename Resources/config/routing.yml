@@ -3,3 +3,31 @@ smileezcampaign_campaign:
     defaults: { _controller: smile.campaign.controller.campaign:campaignAction, tabItem: "campaigns" }
     requirements:
         tabItem: "[a-z]+"
+
+smileezcampaign_campaign_view:
+    path: /campaign/campaign/{id}
+    defaults: { _controller: smile.campaign.controller.campaign:viewAction }
+    requirements:
+        id: "[0-9a-z]+"
+
+smileezcampaign_campaigns_new:
+    path: /campaign/campaign/new
+    defaults: { _controller: smile.campaign.controller.campaigns:newAction }
+
+smileezcampaign_campaigns_folder_new:
+    path: /campaign/campaign/folder/new
+    defaults: { _controller: smile.campaign.controller.campaigns:folderNewAction }
+
+smileezcampaign_list_view:
+    path: /campaign/list/{id}
+    defaults: { _controller: smile.campaign.controller.list:viewAction }
+    requirements:
+        id: "[0-9a-z]+"
+
+smileezcampaign_lists_new:
+    path: /campaign/list/new
+    defaults: { _controller: smile.campaign.controller.lists:newAction }
+
+smileezcampaign_lists_folder_new:
+    path: /campaign/list/folder/new
+    defaults: { _controller: smile.campaign.controller.lists:folderNewAction }
