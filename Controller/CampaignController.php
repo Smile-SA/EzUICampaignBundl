@@ -2,6 +2,7 @@
 
 namespace Smile\EzUICampaignBundle\Controller;
 
+use Smile\EzUICampaignBundle\Service\CampaignService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,8 @@ class CampaignController extends AbstractCampaignController
     /** @var CampaignsService $campaignsService */
     protected $campaignsService;
 
+    protected $campaignService;
+
     /** @var ListsService $listsService */
     protected $listsService;
 
@@ -26,11 +29,13 @@ class CampaignController extends AbstractCampaignController
     public function __construct(
         $tabItems,
         CampaignsService $campaignsService,
+        CampaignService $campaignService,
         ListsService $listsService
     )
     {
         $this->tabItems = $tabItems;
         $this->campaignsService = $campaignsService;
+        $this->campaignService = $campaignService;
         $this->listsService = $listsService;
     }
 
@@ -93,6 +98,8 @@ class CampaignController extends AbstractCampaignController
 
     public function viewAction(Request $request, $id)
     {
-
+        return $this->render('SmileEzUICampaignBundle:campaign:campaign/view.html.twig', [
+            'campaign' => $this->campaignService->get($id)
+        ]);
     }
 }

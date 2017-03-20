@@ -2,28 +2,24 @@
 
 namespace Smile\EzUICampaignBundle\Controller;
 
-use Smile\EzUICampaignBundle\Service\ListsService;
-use Symfony\Component\HttpFoundation\Request;
+use Smile\EzUICampaignBundle\Service\ListService;
 
 class ListController extends AbstractCampaignController
 {
-    /** @var ListsService $listsService */
-    protected $listsService;
+    /** @var ListService $listService */
+    protected $listService;
 
-    /**
-     * CampaignController constructor.
-     *
-     * @param string[] $tabItems tab item names
-     */
     public function __construct(
-        ListsService $listsService
+        ListService $listService
     )
     {
-        $this->listsService = $listsService;
+        $this->listService = $listService;
     }
 
-    public function viewAction(Request $request, $id)
+    public function viewAction($id)
     {
-
+        return $this->render('SmileEzUICampaignBundle:campaign:list/view.html.twig', [
+            'campaign' => $this->listService->get($id)
+        ]);
     }
 }

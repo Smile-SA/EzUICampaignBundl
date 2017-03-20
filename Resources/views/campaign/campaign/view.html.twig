@@ -1,0 +1,24 @@
+{% extends "eZPlatformUIBundle::pjax_admin.html.twig" %}
+
+{% trans_default_domain "smileezuicampaign" %}
+
+{% block title %}
+{% endblock %}
+
+{% block header_breadcrumbs %}
+    {% set breadcrumb_items = [
+    {link: path('admin_dashboard'), label: 'dashboard.title'|trans({}, 'dashboard')},
+    {link: null, label: 'Campaign'|trans}
+    ] %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header_title %}
+    <h1 class="ez-page-header-name" data-icon="&#xe91f;">
+    </h1>
+{% endblock %}
+
+{% block content %}
+    <section class="ez-serverside-content">
+    </section>
+{% endblock %}
