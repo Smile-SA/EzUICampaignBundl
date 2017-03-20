@@ -1,9 +1,9 @@
 parameters:
     smile.campaign.service.campaign.class: Smile\EzUICampaignBundle\Service\CampaignService
-    smile.campaign.service.campaigns_folder.class: Smile\EzUICampaignBundle\Service\CampaignsFolderService
+    smile.campaign.service.campaign_folders.class: Smile\EzUICampaignBundle\Service\CampaignFoldersService
+    smile.campaign.service.campaign_folder.class: Smile\EzUICampaignBundle\Service\CampaignFolderService
     smile.campaign.service.campaigns.class: Smile\EzUICampaignBundle\Service\CampaignsService
     smile.campaign.service.list.class: Smile\EzUICampaignBundle\Service\ListsService
-    smile.campaign.service.lists_folder.class: Smile\EzUICampaignBundle\Service\ListsFolderService
     smile.campaign.service.lists.class: Smile\EzUICampaignBundle\Service\ListsService
 
     smile.campaign.controller.campaign.class: Smile\EzUICampaignBundle\Controller\CampaignController
@@ -20,8 +20,13 @@ services:
         arguments:
             - @welp_mailchimp.mailchimp_master
 
-    smile.campaign.service.campaigns_folder:
-        class: %smile.campaign.service.campaigns_folder.class%
+    smile.campaign.service.campaign_folders:
+        class: %smile.campaign.service.campaign_folders.class%
+        arguments:
+            - @welp_mailchimp.mailchimp_master
+
+    smile.campaign.service.campaign_folder:
+        class: %smile.campaign.service.campaign_folder.class%
         arguments:
             - @welp_mailchimp.mailchimp_master
 
@@ -32,11 +37,6 @@ services:
 
     smile.campaign.service.list:
         class: %smile.campaign.service.list.class%
-        arguments:
-            - @welp_mailchimp.mailchimp_master
-
-    smile.campaign.service.lists_folder:
-        class: %smile.campaign.service.lists_folder.class%
         arguments:
             - @welp_mailchimp.mailchimp_master
 
