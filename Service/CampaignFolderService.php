@@ -2,25 +2,14 @@
 
 namespace Smile\EzUICampaignBundle\Service;
 
-use DrewM\MailChimp\MailChimp;
-
-class CampaignFolderService
+class CampaignFolderService extends BaseService
 {
-    /** @var MailChimp $mailChimp */
-    protected $mailChimp;
-
-    public function __construct(MailChimp $mailChimp)
-    {
-        $this->mailChimp = $mailChimp;
-    }
-
     public function get($campaignFolderID)
     {
         $campaignFolder = $this->mailChimp->get('/campaign-folders/' . $campaignFolderID, array());
 
-        if (!$this->mailChimp->success() || !$campaignFolder
-            || (isset($campaignFolder['status']) && is_int($campaignFolder['status']))) {
-            $campaignFolder = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $campaignFolder;
@@ -32,9 +21,8 @@ class CampaignFolderService
             'name' => $name
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -46,9 +34,8 @@ class CampaignFolderService
             'name' => $name,
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;

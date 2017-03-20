@@ -2,25 +2,14 @@
 
 namespace Smile\EzUICampaignBundle\Service;
 
-use DrewM\MailChimp\MailChimp;
-
-class CampaignService
+class CampaignService extends BaseService
 {
-    /** @var MailChimp $mailChimp */
-    protected $mailChimp;
-
-    public function __construct(MailChimp $mailChimp)
-    {
-        $this->mailChimp = $mailChimp;
-    }
-
     public function get($campaignID)
     {
         $campaign = $this->mailChimp->get('/campaigns/' . $campaignID, array());
 
-        if (!$this->mailChimp->success() || !$campaign
-            || (isset($campaign['status']) && is_int($campaign['status']))) {
-            $campaign = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $campaign;
@@ -42,9 +31,8 @@ class CampaignService
             )
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -65,9 +53,8 @@ class CampaignService
             )
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -77,9 +64,8 @@ class CampaignService
     {
         $return = $this->mailChimp->delete('/campaigns/' . $campaignID, array());
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -92,9 +78,8 @@ class CampaignService
             'send_type' => 'html'
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -104,9 +89,8 @@ class CampaignService
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/send', array());
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -116,9 +100,8 @@ class CampaignService
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/pause', array());
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -128,9 +111,8 @@ class CampaignService
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/resume', array());
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;

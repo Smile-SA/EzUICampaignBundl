@@ -2,18 +2,8 @@
 
 namespace Smile\EzUICampaignBundle\Service;
 
-use DrewM\MailChimp\MailChimp;
-
-class CampaignsService
+class CampaignsService extends BaseService
 {
-    /** @var MailChimp $mailChimp */
-    protected $mailChimp;
-
-    public function __construct(MailChimp $mailChimp)
-    {
-        $this->mailChimp = $mailChimp;
-    }
-
     public function get($offset = 0, $count = 10)
     {
         $campaigns = $this->mailChimp->get('/campaigns', array(
@@ -21,8 +11,7 @@ class CampaignsService
             'count' => $count
         ));
 
-        if (!$this->mailChimp->success() || !$campaigns
-            || (isset($campaigns['status']) && is_int($campaigns['status']))) {
+        if (!$this->mailChimp->success()) {
             $campaigns = array(
                 'campaigns' => array(),
                 'total_items' => 0

@@ -2,25 +2,14 @@
 
 namespace Smile\EzUICampaignBundle\Service;
 
-use DrewM\MailChimp\MailChimp;
-
-class ListService
+class ListService extends BaseService
 {
-    /** @var MailChimp $mailChimp */
-    protected $mailChimp;
-
-    public function __construct(MailChimp $mailChimp)
-    {
-        $this->mailChimp = $mailChimp;
-    }
-
     public function get($listID)
     {
         $list = $this->mailChimp->get('/lists/' . $listID, array());
 
-        if (!$this->mailChimp->success() || !$list
-            || (isset($list['status']) && is_int($list['status']))) {
-            $list = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $list;
@@ -40,9 +29,8 @@ class ListService
             )
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -62,9 +50,8 @@ class ListService
             )
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -74,9 +61,8 @@ class ListService
     {
         $return = $this->mailChimp->delete('/lists/' . $listID, array());
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -94,9 +80,8 @@ class ListService
             'update_existing' => true
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -114,9 +99,8 @@ class ListService
             'update_existing' => true
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;

@@ -2,18 +2,8 @@
 
 namespace Smile\EzUICampaignBundle\Service;
 
-use DrewM\MailChimp\MailChimp;
-
-class CampaignFoldersService
+class CampaignFoldersService extends BaseService
 {
-    /** @var MailChimp $mailChimp */
-    protected $mailChimp;
-
-    public function __construct(MailChimp $mailChimp)
-    {
-        $this->mailChimp = $mailChimp;
-    }
-
     public function get($offset = 0, $count = 10)
     {
         $campaignFolders = $this->mailChimp->get('/campaign-folders', array(
@@ -21,8 +11,7 @@ class CampaignFoldersService
             'count' => $count
         ));
 
-        if (!$this->mailChimp->success() || !$campaignFolders
-            || (isset($campaignFolders['status']) && is_int($campaignFolders['status']))) {
+        if (!$this->mailChimp->success()) {
             $campaignFolders = array(
                 'folders' => array(),
                 'total_items' => 0
