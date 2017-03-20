@@ -1,0 +1,25 @@
+.ez-view-serversideview .smileezuicampaign-view {
+    background: #FAFAFA;
+}
+
+.ez-view-serversideview .smileezuicampaign-view .smileezuicampaign-metadata {
+    background: #f3f3f3;
+}
+
+.ez-view-serversideview .smileezuicampaign-view .smileezuicampaign-metadata-name {
+    background: #ededed;
+    font-weight: bold;
+}
+
+.ez-view-serversideview .smileezuicampaign-view .smileezuicampaign-metadata {
+    display: flex;
+}
+
+.ez-view-serversideview .smileezuicampaign-view .smileezuicampaign-metadata-name,
+.ez-view-serversideview .smileezuicampaign-view .smileezuicampaign-metadata-value {
+    padding: 0.8em 1em;
+}
+
+.ez-view-serversideview .smileezuicampaign-view .smileezuicampaign-metadata-name {
+    width: 250px;
+}

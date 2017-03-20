@@ -7,18 +7,29 @@
 
 {% block header_breadcrumbs %}
     {% set breadcrumb_items = [
-    {link: path('admin_dashboard'), label: 'dashboard.title'|trans({}, 'dashboard')},
-    {link: null, label: 'Campaign'|trans}
+        {link: path('smileezcampaign_campaign'), label: 'Campaign'|trans},
+        {link: null, label: list.name}
     ] %}
     {{ parent() }}
 {% endblock %}
 
 {% block header_title %}
     <h1 class="ez-page-header-name" data-icon="&#xe91f;">
+        {{ list.name }} [{{ list.id }}]
     </h1>
 {% endblock %}
 
 {% block content %}
     <section class="ez-serverside-content">
+        <section class="smileezuicampaign-view">
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.name"|trans|desc("Name") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.name }}</div>
+            </div>
+
+            <div class="ez-toolbar">
+                <a href="{{ path('smileezcampaign_list_edit', {'id': list.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'list.edit'|trans|desc("Edit") }}</a>
+            </div>
+        </section>
     </section>
 {% endblock %}

@@ -10,17 +10,29 @@ smileezcampaign_campaign_view:
     requirements:
         id: "[0-9a-z]+"
 
+smileezcampaign_campaign_edit:
+    path: /campaign/campaign/{id}/edit
+    defaults: { _controller: smile.campaign.controller.campaign:editAction }
+    requirements:
+        id: "[0-9a-z]+"
+
 smileezcampaign_campaigns_new:
     path: /campaign/campaign/new
     defaults: { _controller: smile.campaign.controller.campaigns:newAction }
 
-smileezcampaign_campaigns_folder_new:
+smileezcampaign_campaign_folders_new:
     path: /campaign/campaign/folder/new
     defaults: { _controller: smile.campaign.controller.campaigns:folderNewAction }
 
 smileezcampaign_list_view:
     path: /campaign/list/{id}
     defaults: { _controller: smile.campaign.controller.list:viewAction }
+    requirements:
+        id: "[0-9a-z]+"
+
+smileezcampaign_list_edit:
+    path: /campaign/list/{id}/edit
+    defaults: { _controller: smile.campaign.controller.list:editAction }
     requirements:
         id: "[0-9a-z]+"
 

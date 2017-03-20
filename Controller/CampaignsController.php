@@ -2,7 +2,7 @@
 
 namespace Smile\EzUICampaignBundle\Controller;
 
-use Smile\EzUICampaignBundle\Service\CampaignsFolderService;
+use Smile\EzUICampaignBundle\Service\CampaignFoldersService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -11,16 +11,16 @@ class CampaignsController extends AbstractCampaignController
     /** @var CampaignsService $campaignsService */
     protected $campaignsService;
 
-    /** @var CampaignsFolderService $campaignsFolderService */
-    protected $campaignsFolderService;
+    /** @var CampaignFoldersService $campaignFoldersService */
+    protected $campaignFoldersService;
 
     public function __construct(
         CampaignsService $campaignsService,
-        CampaignsFolderService $campaignsFolderService
+        CampaignFoldersService $campaignFoldersService
     )
     {
         $this->campaignsService = $campaignsService;
-        $this->campaignsFolderService = $campaignsFolderService;
+        $this->campaignFoldersService = $campaignFoldersService;
     }
 
     public function newAction()
@@ -30,6 +30,6 @@ class CampaignsController extends AbstractCampaignController
 
     public function folderNewAction(Request $request)
     {
-
+        return $this->render('SmileEzUICampaignBundle:campaign:campaignFolders/new.html.twig', []);
     }
 }

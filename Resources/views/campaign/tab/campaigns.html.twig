@@ -2,14 +2,17 @@
 <table class="ezconf-list pure-table pure-table-striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Subject</th>
-            <th>Create time</th>
-            <th>Status</th>
-            <th>Emails sent</th>
-            <th>Send time</th>
-            <th>List name</th>
+            <th>{{ 'ID'|trans }}</th>
+            <th>{{ 'Title'|trans }}</th>
+            <th>{{ 'Subject'|trans }}</th>
+            <th>{{ 'Create time'|trans }}</th>
+            <th>{{ 'Status'|trans }}</th>
+            <th>{{ 'Emails sent'|trans }}</th>
+            <th>{{ 'Send time'|trans }}</th>
+            <th>{{ 'List name'|trans }}</th>
+            <th></th>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
         </tr>
@@ -36,5 +39,5 @@
 
 <p class="ez-table-data-buttons">
     <a href="{{ path('smileezcampaign_campaigns_new') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'compaign.new'|trans }}</a>
-    <a href="{{ path('smileezcampaign_campaigns_folder_new') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'compaign.folder.new'|trans }}</a>
+    <a href="{{ path('smileezcampaign_campaign_folders_new') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'compaign.folder.new'|trans }}</a>
 </p>

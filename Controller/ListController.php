@@ -19,7 +19,11 @@ class ListController extends AbstractCampaignController
     public function viewAction($id)
     {
         return $this->render('SmileEzUICampaignBundle:campaign:list/view.html.twig', [
-            'campaign' => $this->listService->get($id)
+            'list' => $this->listService->get($id)
         ]);
+    }
+
+    public function editAction($id)
+    {
     }
 }

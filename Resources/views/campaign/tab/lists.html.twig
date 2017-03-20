@@ -2,10 +2,10 @@
 <table class="ezconf-list pure-table pure-table-striped">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Date created</th>
-        <th>Member count</th>
+        <th>{{ 'ID'|trans }}</th>
+        <th>{{ 'Name'|trans }}</th>
+        <th>{{ 'Date created'|trans }}</th>
+        <th>{{ 'Member count'|trans }}</th>
         <th></th>
         <th></th>
     </tr>
@@ -28,5 +28,4 @@
 
 <p class="ez-table-data-buttons">
     <a href="{{ path('smileezcampaign_lists_new') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'list.new'|trans }}</a>
-    <a href="{{ path('smileezcampaign_lists_folder_new') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'list.folder.new'|trans }}</a>
 </p>

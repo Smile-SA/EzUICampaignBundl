@@ -7,18 +7,45 @@
 
 {% block header_breadcrumbs %}
     {% set breadcrumb_items = [
-    {link: path('admin_dashboard'), label: 'dashboard.title'|trans({}, 'dashboard')},
-    {link: null, label: 'Campaign'|trans}
+        {link: path('smileezcampaign_campaign'), label: 'Campaign'|trans},
+        {link: null, label: campaign.settings.title}
     ] %}
     {{ parent() }}
 {% endblock %}
 
 {% block header_title %}
-    <h1 class="ez-page-header-name" data-icon="&#xe91f;">
+    <h1 class="smileezuicampaign-status-title" data-icon="&#xe622;">
+        {{ campaign.settings.title }} [{{ campaign.id }}]
     </h1>
 {% endblock %}
 
 {% block content %}
     <section class="ez-serverside-content">
+        <section class="smileezuicampaign-view">
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "campaign.list_name"|trans|desc("List name") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ campaign.recipients.list_name }} [{{ campaign.recipients.list_id }}]</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "campaign.subject_line"|trans|desc("Subject line") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ campaign.settings.subject_line }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "campaign.title"|trans|desc("Title") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ campaign.settings.title }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "campaign.from_name"|trans|desc("From name") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ campaign.settings.from_name }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "campaign.reply_to"|trans|desc("Reply to") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ campaign.settings.reply_to }}</div>
+            </div>
+
+            <div class="ez-toolbar">
+                <a href="{{ path('smileezcampaign_campaign_edit', {'id': campaign.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'campaign.edit'|trans|desc("Edit") }}</a>
+            </div>
+        </section>
     </section>
 {% endblock %}

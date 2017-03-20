@@ -96,10 +96,14 @@ class CampaignController extends AbstractCampaignController
         return $params;
     }
 
-    public function viewAction(Request $request, $id)
+    public function viewAction($id)
     {
         return $this->render('SmileEzUICampaignBundle:campaign:campaign/view.html.twig', [
             'campaign' => $this->campaignService->get($id)
         ]);
+    }
+
+    public function editAction($id)
+    {
     }
 }
