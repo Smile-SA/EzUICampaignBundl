@@ -20,4 +20,21 @@ class CampaignsService extends BaseService
 
         return $campaigns;
     }
+
+    public function search($query)
+    {
+        $campaigns = $this->mailChimp->get('/search-campaigns', array(
+            'query' => $query,
+            'fields' => 'id,settings.title'
+        ));
+
+        if (!$this->mailChimp->success()) {
+            $campaigns = array(
+                'campaigns' => array(),
+                'total_items' => 0
+            );
+        }
+
+        return $campaigns;
+    }
 }

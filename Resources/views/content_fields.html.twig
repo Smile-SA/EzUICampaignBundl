@@ -3,6 +3,15 @@
 {% block smilecampaigncampaign_field %}
     {% spaceless %}
         {% set field_value = field.value.text %}
-        {{ block( 'simple_inline_field' ) }}
+        {{ block( 'smile_campaign_field' ) }}
     {% endspaceless %}
 {% endblock %}
+
+{% block smile_campaign_field %}
+    {% spaceless %}
+        {% if field_value is defined %}
+            <input type=""text" />
+        {% endif %}
+    {% endspaceless %}
+{% endblock %}
+

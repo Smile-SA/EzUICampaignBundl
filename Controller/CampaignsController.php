@@ -32,4 +32,11 @@ class CampaignsController extends AbstractCampaignController
     {
         return $this->render('SmileEzUICampaignBundle:campaign:campaignFolders/new.html.twig', []);
     }
+
+    public function searchAction($query)
+    {
+        $campaigns = $this->campaignsService->search($query);
+
+        return json_encode($campaigns['results']);
+    }
 }
