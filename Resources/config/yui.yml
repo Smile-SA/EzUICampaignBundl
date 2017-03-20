@@ -5,37 +5,37 @@ system:
                 smileez-uicampaign-appplugin:
                     requires: ['ez-pluginregistry', 'plugin', 'base', 'smileez-uicampaign-view', 'smileez-uicampaign-viewservice']
                     dependencyOf: ['ez-platformuiapp']
-                    path: %smileezuicampaign.public_dir%/js/apps/plugins/smileez-uicampaign-appplugin.js
+                    path: %smile_campaignfieldtype.public_dir%/js/apps/plugins/smileez-uicampaign-appplugin.js
                 smileez-uicampaign-navigationplugin:
                     requires: ['ez-pluginregistry', 'ez-viewservicebaseplugin', 'ez-navigationitemview']
                     dependencyOf: ['ez-navigationhubviewservice']
-                    path: %smileezuicampaign.public_dir%/js/views/services/plugins/smileez-uicampaign-navigationplugin.js
+                    path: %smile_campaignfieldtype.public_dir%/js/views/services/plugins/smileez-uicampaign-navigationplugin.js
                 smileez-uicampaign-viewservice:
                     requires: ['ez-serversideviewservice']
-                    path: %smileezuicampaign.public_dir%/js/views/services/smileez-uicampaign-viewservice.js
+                    path: %smile_campaignfieldtype.public_dir%/js/views/services/smileez-uicampaign-viewservice.js
                 smileez-uicampaign-view:
                     requires: ['ez-serversideview']
-                    path: %smileezuicampaign.public_dir%/js/views/smileez-uicampaign-view.js
+                    path: %smile_campaignfieldtype.public_dir%/js/views/smileez-uicampaign-view.js
 
 
                 ez-rawcontentview:
                     requires:
-                        - 'smileezuicampaign-view'
+                        - 'smile-campaign-view'
                 ez-contenteditformview:
                     requires:
-                        - 'smileezuicampaign-editview'
-                smileezuicampaign-view:
+                        - 'smile-campaign-editview'
+                smile-campaign-view:
                     requires: ['ez-fieldview', 'campaignview-ez-template']
-                    path: "%smileezuicampaign.public_dir%/js/views/fields/smileezuicampaign-view.js"
-                smileezuicampaign-editview:
+                    path: "%smile_campaignfieldtype.public_dir%/js/views/fields/smile-campaign-view.js"
+                smile-campaign-editview:
                     requires: ['ez-fieldeditview', 'event-valuechange', 'campaigneditview-ez-template']
-                    path: "%smileezuicampaign.public_dir%/js/views/fields/smileezuicampaign-editview.js"
+                    path: "%smile_campaignfieldtype.public_dir%/js/views/fields/smile-campaign-editview.js"
                 campaignview-ez-template:
                     type: 'template'
-                    path: "%smileezuicampaign.public_dir%/templates/fields/view/campaign.hbt"
+                    path: "%smile_campaignfieldtype.public_dir%/templates/fields/view/campaign.hbt"
                 campaigneditview-ez-template:
                     type: 'template'
-                    path: "%smileezuicampaign.public_dir%/templates/fields/edit/campaign.hbt"
+                    path: "%smile_campaignfieldtype.public_dir%/templates/fields/edit/campaign.hbt"
 
 
 

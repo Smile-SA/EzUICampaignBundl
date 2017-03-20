@@ -1,13 +1,13 @@
-YUI.add('smileezuicampaign-editview', function (Y) {
+YUI.add('smile-campaign-editview', function (Y) {
     "use strict";
-    Y.namespace('SmileEzUICampaign');
+    Y.namespace('Smile');
 
     var L = Y.Lang,
-        FIELDTYPE_IDENTIFIER = 'smileezuicampaign';
+        FIELDTYPE_IDENTIFIER = 'smilecampaign';
 
-    Y.SmileEzUICampaign.CampaignEditView = Y.Base.create('campaignEditView', Y.eZ.FieldEditView, [], {
+    Y.Smile.CampaignEditView = Y.Base.create('campaignEditView', Y.eZ.FieldEditView, [], {
         events: {
-            '.smileezuicampaign-input-ui input': {
+            '.smile-campaign-input-ui input': {
                 'blur': 'validate',
                 'valuechange': 'validate'
             }
@@ -33,15 +33,15 @@ YUI.add('smileezuicampaign-editview', function (Y) {
         },
 
         _getInputValidity: function () {
-            return this.get('container').one('.smileezuicampaign-input-ui input').get('validity');
+            return this.get('container').one('.smile-campaign-input-ui input').get('validity');
         },
 
         _getFieldValue: function () {
-            return this.get('container').one('.smileezuicampaign-input-ui input').get('value');
+            return this.get('container').one('.smile-campaign-input-ui input').get('value');
         }
     });
 
     Y.eZ.FieldEditView.registerFieldEditView(
-        FIELDTYPE_IDENTIFIER, Y.SmileEzUICampaign.CampaignEditView
+        FIELDTYPE_IDENTIFIER, Y.Smile.CampaignEditView
     );
 });

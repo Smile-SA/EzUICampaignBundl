@@ -28,6 +28,10 @@ class FormMapper implements FieldDefinitionFormMapperInterface, FieldValueFormMa
         $fieldDefinitionForm
             ->add(
                 $fieldDefinitionForm->getConfig()->getFormFactory()->createBuilder()
+                    ->create('defaultValue', TextType::class, [
+                        'required' => false,
+                        'label' => 'field_definition.smilecampaign.default_value',
+                    ])
                     ->addModelTransformer(new ValueTransformer())
                     ->setAutoInitialize(false)->getForm()
             );

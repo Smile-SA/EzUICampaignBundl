@@ -42,7 +42,7 @@ class SmileEzUICampaignExtension extends Extension implements PrependExtensionIn
     private function prependYui(ContainerBuilder $container)
     {
         $container->setParameter(
-            'smileezuicampaign.public_dir',
+            'smile_campaignfieldtype.public_dir',
             'bundles/smileezuicampaign'
         );
         $yuiConfigFile = __DIR__ . '/../Resources/config/yui.yml';
@@ -54,7 +54,7 @@ class SmileEzUICampaignExtension extends Extension implements PrependExtensionIn
     private function prependCss(ContainerBuilder $container)
     {
         $container->setParameter(
-            'smileezuicampaign.public_dir',
+            'smile_campaignfieldtype.public_dir',
             'bundles/smileezuicampaign'
         );
         $cssConfigFile = __DIR__ . '/../Resources/config/css.yml';

@@ -1,17 +1,8 @@
 {% extends 'EzPublishCoreBundle::content_fields.html.twig' %}
 
-{% block smilecampaigncampaign_field %}
+{% block smilecampaign_field %}
     {% spaceless %}
         {% set field_value = field.value.text %}
-        {{ block( 'smile_campaign_field' ) }}
+        {{ block( 'simple_inline_field' ) }}
     {% endspaceless %}
 {% endblock %}
-
-{% block smile_campaign_field %}
-    {% spaceless %}
-        {% if field_value is defined %}
-            <input type=""text" />
-        {% endif %}
-    {% endspaceless %}
-{% endblock %}
-

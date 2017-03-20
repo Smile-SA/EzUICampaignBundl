@@ -29,7 +29,7 @@ class Type extends FieldType
 
     public function getFieldTypeIdentifier()
     {
-        return 'smileezuicampaign';
+        return 'smilecampaign';
     }
 
     public function getName(SPIValue $value)

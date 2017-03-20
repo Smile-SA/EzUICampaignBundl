@@ -1,2 +1,2 @@
-smilecampaigncampaign: { name: "Campaign" }
-field_definition.smilecampaigncampaign.default_value: "Default value"
+smilecampaign: { name: "Campaign" }
+field_definition.smilecampaign.default_value: "Default value"

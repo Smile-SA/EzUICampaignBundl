@@ -2,6 +2,6 @@ system:
     default:
         css:
             files:
-                - %smileezuicampaign.public_dir%/css/views/fields/edit/campaign.css
-                - %smileezuicampaign.public_dir%/css/views/uicampaign.css
-                - %smileezuicampaign.public_dir%/css/platform.css
+                - %smile_campaignfieldtype.public_dir%/css/views/fields/edit/campaign.css
+                - %smile_campaignfieldtype.public_dir%/css/views/uicampaign.css
+                - %smile_campaignfieldtype.public_dir%/css/platform.css

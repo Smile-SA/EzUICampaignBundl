@@ -6,5 +6,5 @@ use eZ\Publish\SPI\Search\FieldType;
 
 class CampaignField extends FieldType
 {
-    protected $type = 'smileezuicampaign';
+    protected $type = 'smile_campaign';
 }
