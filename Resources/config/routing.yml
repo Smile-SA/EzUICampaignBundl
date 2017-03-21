@@ -20,6 +20,12 @@ smileezcampaign_campaigns_new:
     path: /campaign/campaign/new
     defaults: { _controller: smile.campaign.controller.campaigns:newAction }
 
+smileezcampaign_campaign_subscribe:
+    path: /campaign/campaign/{id}/subscribe
+    defaults: { _controller: smile.campaign.controller.campaign:subscribeAction }
+    requirements:
+        id: "[0-9a-z]+"
+
 smileezcampaign_campaign_folders_new:
     path: /campaign/campaign/folder/new
     defaults: { _controller: smile.campaign.controller.campaigns:folderNewAction }

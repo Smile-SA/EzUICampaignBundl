@@ -3,6 +3,14 @@
 {% block smilecampaign_field %}
     {% spaceless %}
         {% set field_value = field.value.text %}
-        {{ block( 'simple_inline_field' ) }}
+        <div id="campaign-container-{{ field.id }}">
+            <label for="campaign-{{ field.id }}">{{ 'Subscribe'|trans }}</label>
+            <span class="message"></span>
+            <input type="text"
+                   id="campaign-{{ field.id }}"
+                   class="smilecampaign-field"
+                   data-path="{{ path("smileezcampaign_campaign_subscribe", {"id": field_value}) }}"/>
+            <input type="submit" class="smilecampaign-submit" data-id="{{ field.id }}"/>
+        </div>
     {% endspaceless %}
 {% endblock %}

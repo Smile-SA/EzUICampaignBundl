@@ -5,8 +5,10 @@ namespace Smile\EzUICampaignBundle\Controller;
 use Smile\EzUICampaignBundle\Service\CampaignService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Welp\MailchimpBundle\Exception\MailchimpException;
 
 class CampaignController extends AbstractCampaignController
 {
@@ -105,5 +107,32 @@ class CampaignController extends AbstractCampaignController
 
     public function editAction($id)
     {
+    }
+
+    public function subscribeAction($id, Request $request)
+    {
+        $response = new JsonResponse();
+
+        try {
+            $email = $request->request->get('email');
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $response->setStatusCode(400);
+
+                $response->setData(array(
+                    'message' => 'not a valid email'
+                ));
+            } else {
+                $this->campaignService->subscribe($id, $email);
+            }
+        } catch (MailchimpException $exception) {
+            $response->setStatusCode(400);
+
+            $response->setData(array(
+                'message' => $exception->getTitle()
+            ));
+        }
+
+        return $response;
     }
 }

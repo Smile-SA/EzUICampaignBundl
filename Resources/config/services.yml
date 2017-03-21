@@ -19,6 +19,7 @@ services:
         class: %smile.campaign.service.campaign.class%
         arguments:
             - @welp_mailchimp.mailchimp_master
+            - @smile.campaign.service.list
 
     smile.campaign.service.campaign_folders:
         class: %smile.campaign.service.campaign_folders.class%

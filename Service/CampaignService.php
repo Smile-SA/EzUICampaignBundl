@@ -2,8 +2,22 @@
 
 namespace Smile\EzUICampaignBundle\Service;
 
+use DrewM\MailChimp\MailChimp;
+use Welp\MailchimpBundle\Exception\MailchimpException;
+
 class CampaignService extends BaseService
 {
+    protected $listService;
+
+    public function __construct(
+        MailChimp $mailChimp,
+        ListService $listService
+    )
+    {
+        parent::__construct($mailChimp);
+        $this->listService = $listService;
+    }
+
     public function get($campaignID)
     {
         $campaign = $this->mailChimp->get('/campaigns/' . $campaignID, array());
@@ -124,9 +138,8 @@ class CampaignService extends BaseService
             'schedule_time' => $scheduleTime
         ));
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
@@ -136,11 +149,22 @@ class CampaignService extends BaseService
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/unschedule', array());
 
-        if (!$this->mailChimp->success() || !$return
-            || (isset($return['status']) && is_int($return['status']))) {
-            $return = false;
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
         return $return;
+    }
+
+    public function subscribe($campaignID, $email)
+    {
+        try {
+            $campaign = $this->get($campaignID);
+            if ($campaign) {
+                $this->listService->subscribe($campaign['recipients']['list_id'], $email);
+            }
+        } catch (MailchimpException $exception) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
+        }
     }
 }

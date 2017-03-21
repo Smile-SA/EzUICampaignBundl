@@ -25,16 +25,6 @@ class FormMapper implements FieldDefinitionFormMapperInterface, FieldValueFormMa
 
     public function mapFieldDefinitionForm(FormInterface $fieldDefinitionForm, FieldDefinitionData $data)
     {
-        $fieldDefinitionForm
-            ->add(
-                $fieldDefinitionForm->getConfig()->getFormFactory()->createBuilder()
-                    ->create('defaultValue', TextType::class, [
-                        'required' => false,
-                        'label' => 'field_definition.smilecampaign.default_value',
-                    ])
-                    ->addModelTransformer(new ValueTransformer())
-                    ->setAutoInitialize(false)->getForm()
-            );
     }
 
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
