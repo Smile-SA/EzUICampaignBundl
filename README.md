@@ -63,22 +63,28 @@ php app/console assets:install --symlink web
 php app/console assetic:dump
 ```
 
+Add in your layout reference to __smilecampaign.js__
+
+```twig
+{% javascripts
+    ...
+    'bundles/smileezuicampaign/js/smilecampaign.js'
+%}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+```
+
 ## TODO
 
-* create campaign folder
-* create campaign
+* new campaign folder
 * new campaign
 * edit campaign
 * delete campaign
 * campaign pagination
 * send campaign
 * send campaign test
-* create list folder
-* create list
 * new list
 * edit list
 * delete list
 * list pagination
 * campaign fieldtype
-* campaign fieldtype front view
-* campaign subscribe
