@@ -1,9 +1,9 @@
 {% extends 'EzPublishCoreBundle::fielddefinition_settings.html.twig' %}
 
 {% block smilecampaign_settings %}
-    <ul class="fielddef-settings {{ fielddefinition.fieldTypeIdentifier }}-settings">
-        {% set defaultValue = fielddefinition.defaultValue.value %}
-        {{ block('settings_defaultvalue') }}
+    <ul class="ez-fielddefinition-settings ez-fielddefinition-{{ fielddefinition.fieldTypeIdentifier }}-settings">
+        {% set defaultValue = fielddefinition.defaultValue.text %}
+        {{ block( 'settings_defaultvalue' ) }}
     </ul>
 {% endblock %}
 
