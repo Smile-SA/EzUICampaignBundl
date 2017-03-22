@@ -2,9 +2,13 @@
 
 namespace Smile\EzUICampaignBundle\Controller;
 
+use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
+use Smile\EzUICampaignBundle\Data\Mapper\CampaignMapper;
+use Smile\EzUICampaignBundle\Form\Type\CampaignType;
 use Smile\EzUICampaignBundle\Service\CampaignService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
+use Smile\EzUICampaignBundle\Values\Campaign;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +22,14 @@ class CampaignController extends AbstractCampaignController
     /** @var CampaignsService $campaignsService */
     protected $campaignsService;
 
+    /** @var CampaignService $campaignService */
     protected $campaignService;
 
     /** @var ListsService $listsService */
     protected $listsService;
+
+    /** @var ActionDispatcherInterface $campaignActionDispatcher */
+    protected $campaignActionDispatcher;
 
     /**
      * CampaignController constructor.
@@ -32,13 +40,15 @@ class CampaignController extends AbstractCampaignController
         $tabItems,
         CampaignsService $campaignsService,
         CampaignService $campaignService,
-        ListsService $listsService
+        ListsService $listsService,
+        ActionDispatcherInterface $campaignActionDispatcher
     )
     {
         $this->tabItems = $tabItems;
         $this->campaignsService = $campaignsService;
         $this->campaignService = $campaignService;
         $this->listsService = $listsService;
+        $this->campaignActionDispatcher = $campaignActionDispatcher;
     }
 
     /**
@@ -111,8 +121,36 @@ class CampaignController extends AbstractCampaignController
         }
     }
 
-    public function editAction($id)
+    public function editAction(Request $request, $campaignID = null)
     {
+        if ($campaignID) {
+            $campaign = $this->campaignService->get($campaignID);
+        } else {
+            $campaign = new Campaign(['settings' => ['title' => '_new_'], 'recipients' => ['list_id' => '_new_']]);
+        }
+
+        $data = (new CampaignMapper())->mapToFormData($campaign);
+        $actionUrl = $this->generateUrl('admin_contenttypeGroupEdit', ['campaignID' => $campaignID]);
+        $form = $this->createForm(CampaignType::class, $data);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $this->campaignActionDispatcher->dispatchFormAction(
+                $form,
+                $data,
+                $form->getClickedButton() ? $form->getClickedButton()->getName() : null
+            );
+            if ($response = $this->campaignActionDispatcher->getResponse()) {
+                return $response;
+            }
+
+            return $this->redirectAfterFormPost($actionUrl);
+        }
+
+        return $this->render('SmileEzUICampaignBundle::content_fields.html.twig', [
+            'form' => $form->createView(),
+            'campaign' => $data,
+            'actionUrl' => $actionUrl,
+        ]);
     }
 
     public function subscribeAction($id, Request $request)

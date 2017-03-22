@@ -54,12 +54,14 @@ services:
             - @smile.campaign.service.campaigns
             - @smile.campaign.service.campaign
             - @smile.campaign.service.lists
+            - @ezrepoforms.action_dispatcher.content_type
         parent: ezpublish.controller.base
 
     smile.campaign.controller.list:
         class: %smile.campaign.controller.list.class%
         arguments:
             - @smile.campaign.service.list
+            - @ezrepoforms.action_dispatcher.content_type
         parent: ezpublish.controller.base
 
     smile.campaign.controller.campaigns:
