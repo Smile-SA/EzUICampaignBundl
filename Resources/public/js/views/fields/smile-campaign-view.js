@@ -28,6 +28,7 @@ YUI.add('smile-campaign-view', function (Y) {
             var data = JSON.parse(o.responseText),
                 container = args[0],
                 value = args[1];
+console.log('ZZZ0');
 
             container.one('.ez-fieldview-value-content').setHTML(data.settings.title + ' [' + value + ']');
         },
