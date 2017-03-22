@@ -5,8 +5,8 @@ smileezcampaign_campaign:
         tabItem: "[a-z]+"
 
 smileezcampaign_campaign_view:
-    path: /campaign/campaign/{id}
-    defaults: { _controller: smile.campaign.controller.campaign:viewAction }
+    path: /campaign/campaign/{id}/{mode}
+    defaults: { _controller: smile.campaign.controller.campaign:viewAction, mode: false }
     requirements:
         id: "[0-9a-z]+"
 

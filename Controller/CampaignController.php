@@ -98,11 +98,17 @@ class CampaignController extends AbstractCampaignController
         return $params;
     }
 
-    public function viewAction($id)
+    public function viewAction($id, $mode = false)
     {
-        return $this->render('SmileEzUICampaignBundle:campaign:campaign/view.html.twig', [
-            'campaign' => $this->campaignService->get($id)
-        ]);
+        if ($mode == 'ajax') {
+            $response = new JsonResponse();
+            $response->setData($this->campaignService->get($id, array('settings.title')));
+            return $response;
+        } else {
+            return $this->render('SmileEzUICampaignBundle:campaign:campaign/view.html.twig', [
+                'campaign' => $this->campaignService->get($id)
+            ]);
+        }
     }
 
     public function editAction($id)

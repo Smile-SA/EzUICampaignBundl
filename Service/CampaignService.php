@@ -18,9 +18,9 @@ class CampaignService extends BaseService
         $this->listService = $listService;
     }
 
-    public function get($campaignID)
+    public function get($campaignID, $fields = array())
     {
-        $campaign = $this->mailChimp->get('/campaigns/' . $campaignID, array());
+        $campaign = $this->mailChimp->get('/campaigns/' . $campaignID, $fields);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
