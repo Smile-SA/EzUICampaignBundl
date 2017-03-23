@@ -3,12 +3,15 @@
 namespace Smile\EzUICampaignBundle\Controller;
 
 use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
+use Smile\EzUICampaignBundle\Data\Mapper\CampaignFolderMapper;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignMapper;
+use Smile\EzUICampaignBundle\Form\Type\CampaignFolderType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignType;
 use Smile\EzUICampaignBundle\Service\CampaignService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
 use Smile\EzUICampaignBundle\Values\Campaign;
+use Smile\EzUICampaignBundle\Values\CampaignFolder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,6 +34,9 @@ class CampaignController extends AbstractCampaignController
     /** @var ActionDispatcherInterface $campaignActionDispatcher */
     protected $campaignActionDispatcher;
 
+    /** @var ActionDispatcherInterface $campaignFolderActionDispatcher */
+    protected $campaignFolderActionDispatcher;
+
     /**
      * CampaignController constructor.
      *
@@ -41,7 +47,8 @@ class CampaignController extends AbstractCampaignController
         CampaignsService $campaignsService,
         CampaignService $campaignService,
         ListsService $listsService,
-        ActionDispatcherInterface $campaignActionDispatcher
+        ActionDispatcherInterface $campaignActionDispatcher,
+        ActionDispatcherInterface $campaignFolderActionDispatcher
     )
     {
         $this->tabItems = $tabItems;
@@ -49,6 +56,7 @@ class CampaignController extends AbstractCampaignController
         $this->campaignService = $campaignService;
         $this->listsService = $listsService;
         $this->campaignActionDispatcher = $campaignActionDispatcher;
+        $this->campaignFolderActionDispatcher = $campaignFolderActionDispatcher;
     }
 
     /**
@@ -130,7 +138,7 @@ class CampaignController extends AbstractCampaignController
         }
 
         $data = (new CampaignMapper())->mapToFormData($campaign);
-        $actionUrl = $this->generateUrl('admin_contenttypeGroupEdit', ['campaignID' => $campaignID]);
+        $actionUrl = $this->generateUrl('smileezcampaign_campaign_edit', ['id' => $campaignID]);
         $form = $this->createForm(CampaignType::class, $data);
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -146,7 +154,7 @@ class CampaignController extends AbstractCampaignController
             return $this->redirectAfterFormPost($actionUrl);
         }
 
-        return $this->render('SmileEzUICampaignBundle::content_fields.html.twig', [
+        return $this->render('SmileEzUICampaignBundle:campaign:campaign/edit.html.twig', [
             'form' => $form->createView(),
             'campaign' => $data,
             'actionUrl' => $actionUrl,
@@ -178,5 +186,37 @@ class CampaignController extends AbstractCampaignController
         }
 
         return $response;
+    }
+
+    public function editFolderAction(Request $request, $campaignFolderID = null)
+    {
+        if ($campaignFolderID) {
+            $campaignFolder = $this->campaignService->get($campaignFolderID);
+        } else {
+            $campaignFolder = new CampaignFolder(['name' => '_new_']);
+        }
+
+        $data = (new CampaignFolderMapper())->mapToFormData($campaignFolder);
+        $actionUrl = $this->generateUrl('smileezcampaign_folder_edit', ['id' => $campaignFolderID]);
+        $form = $this->createForm(CampaignFolderType::class, $data);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $this->campaignFolderActionDispatcher->dispatchFormAction(
+                $form,
+                $data,
+                $form->getClickedButton() ? $form->getClickedButton()->getName() : null
+            );
+            if ($response = $this->campaignFolderActionDispatcher->getResponse()) {
+                return $response;
+            }
+
+            return $this->redirectAfterFormPost($actionUrl);
+        }
+
+        return $this->render('SmileEzUICampaignBundle:campaign:campaignFolders/edit.html.twig', [
+            'form' => $form->createView(),
+            'campaignFolder' => $data,
+            'actionUrl' => $actionUrl,
+        ]);
     }
 }

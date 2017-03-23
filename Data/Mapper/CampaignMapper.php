@@ -7,7 +7,6 @@ use EzSystems\RepositoryForms\Data\Mapper\FormDataMapperInterface;
 use Smile\EzUICampaignBundle\Data\CampaignCreateData;
 use Smile\EzUICampaignBundle\Data\CampaignUpdateData;
 use Smile\EzUICampaignBundle\Values\AbstractCampaign;
-use Smile\EzUICampaignBundle\Values\CampaignCreateStruct;
 
 class CampaignMapper implements FormDataMapperInterface
 {
@@ -24,7 +23,7 @@ class CampaignMapper implements FormDataMapperInterface
         if (!$this->isCampaignNew($campaign)) {
             $data = new CampaignUpdateData(['campaign' => $campaign]);
         } else {
-            $data = new CampaignCreateStruct(['campaign' => $campaign]);
+            $data = new CampaignCreateData(['campaign' => $campaign]);
         }
 
         return $data;

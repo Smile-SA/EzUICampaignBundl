@@ -42,7 +42,7 @@ class ListController extends AbstractCampaignController
         }
 
         $data = (new CampaignListMapper())->mapToFormData($campaignList);
-        $actionUrl = $this->generateUrl('admin_contenttypeGroupEdit', ['campaignListID' => $campaignListID]);
+        $actionUrl = $this->generateUrl('smileezcampaign_list_edit', ['id' => $campaignListID]);
         $form = $this->createForm(CampaignListType::class, $data);
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -58,7 +58,7 @@ class ListController extends AbstractCampaignController
             return $this->redirectAfterFormPost($actionUrl);
         }
 
-        return $this->render('SmileEzUICampaignBundle::content_fields.html.twig', [
+        return $this->render('SmileEzUICampaignBundle:campaign:list/edit.html.twig', [
             'form' => $form->createView(),
             'campaignList' => $data,
             'actionUrl' => $actionUrl,
