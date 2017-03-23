@@ -7,6 +7,7 @@ use Smile\EzUICampaignBundle\Data\Mapper\CampaignFolderMapper;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignMapper;
 use Smile\EzUICampaignBundle\Form\Type\CampaignFolderType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignType;
+use Smile\EzUICampaignBundle\Service\CampaignFolderService;
 use Smile\EzUICampaignBundle\Service\CampaignService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
@@ -31,6 +32,9 @@ class CampaignController extends AbstractCampaignController
     /** @var ListsService $listsService */
     protected $listsService;
 
+    /** @var CampaignFolderService $campaignFolderService */
+    protected $campaignFolderService;
+
     /** @var ActionDispatcherInterface $campaignActionDispatcher */
     protected $campaignActionDispatcher;
 
@@ -47,6 +51,7 @@ class CampaignController extends AbstractCampaignController
         CampaignsService $campaignsService,
         CampaignService $campaignService,
         ListsService $listsService,
+        CampaignFolderService $campaignFolderService,
         ActionDispatcherInterface $campaignActionDispatcher,
         ActionDispatcherInterface $campaignFolderActionDispatcher
     )
@@ -55,6 +60,7 @@ class CampaignController extends AbstractCampaignController
         $this->campaignsService = $campaignsService;
         $this->campaignService = $campaignService;
         $this->listsService = $listsService;
+        $this->campaignFolderService = $campaignFolderService;
         $this->campaignActionDispatcher = $campaignActionDispatcher;
         $this->campaignFolderActionDispatcher = $campaignFolderActionDispatcher;
     }
@@ -191,7 +197,7 @@ class CampaignController extends AbstractCampaignController
     public function editFolderAction(Request $request, $campaignFolderID = null)
     {
         if ($campaignFolderID) {
-            $campaignFolder = $this->campaignService->get($campaignFolderID);
+            $campaignFolder = $this->campaignFolderService->get($campaignFolderID);
         } else {
             $campaignFolder = new CampaignFolder(['name' => '_new_']);
         }

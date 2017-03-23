@@ -54,6 +54,7 @@ services:
             - @smile.campaign.service.campaigns
             - @smile.campaign.service.campaign
             - @smile.campaign.service.lists
+            - @smile.campaign.service.campaign_folder
             - @ezrepoforms.action_dispatcher.content_type
             - @ezrepoforms.action_dispatcher.content_type
         parent: ezpublish.controller.base
