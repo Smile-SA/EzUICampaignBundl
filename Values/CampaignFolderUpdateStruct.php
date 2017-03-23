@@ -2,7 +2,7 @@
 
 namespace Smile\EzUICampaignBundle\Values;
 
-class CampaignFolderUpdateStruct extends CampaignStruct
+class CampaignFolderUpdateStruct extends CampaignFolderStruct
 {
     public $name = null;
 }

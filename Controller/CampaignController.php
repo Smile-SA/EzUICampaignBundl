@@ -11,7 +11,7 @@ use Smile\EzUICampaignBundle\Service\CampaignService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
 use Smile\EzUICampaignBundle\Values\Campaign;
-use Smile\EzUICampaignBundle\Values\CampaignFolder;
+use Smile\EzUICampaignBundle\Values\Core\CampaignFolder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

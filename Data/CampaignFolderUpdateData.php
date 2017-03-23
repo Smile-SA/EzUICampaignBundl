@@ -13,4 +13,9 @@ class CampaignFolderUpdateData extends CampaignFolderUpdateStruct
     {
         return $this->campaignFolder->id;
     }
+
+    protected function getIdentifierValue()
+    {
+        return null;
+    }
 }

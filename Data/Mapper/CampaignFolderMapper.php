@@ -6,8 +6,7 @@ use eZ\Publish\API\Repository\Values\ValueObject;
 use EzSystems\RepositoryForms\Data\Mapper\FormDataMapperInterface;
 use Smile\EzUICampaignBundle\Data\CampaignFolderCreateData;
 use Smile\EzUICampaignBundle\Data\CampaignFolderUpdateData;
-use Smile\EzUICampaignBundle\Values\AbstractCampaignFolder;
-use Smile\EzUICampaignBundle\Values\CampaignFolder;
+use Smile\EzUICampaignBundle\Values\API\CampaignFolder;
 
 class CampaignFolderMapper implements FormDataMapperInterface
 {

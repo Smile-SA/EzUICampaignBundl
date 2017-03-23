@@ -2,7 +2,7 @@
 
 namespace Smile\EzUICampaignBundle\Data;
 
-use Smile\EzUICampaignBundle\Values\CampaignFolder;
+use Smile\EzUICampaignBundle\Values\API\CampaignFolder;
 
 trait CampaignFolderDataTrait
 {

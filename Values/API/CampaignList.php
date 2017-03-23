@@ -1,10 +1,10 @@
 <?php
 
-namespace Smile\EzUICampaignBundle\Values;
+namespace Smile\EzUICampaignBundle\Values\API;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
 
-abstract class AbstractCampaignFolder extends ValueObject
+abstract class CampaignList extends ValueObject
 {
     protected $id;
 

@@ -6,7 +6,7 @@ use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignListMapper;
 use Smile\EzUICampaignBundle\Form\Type\CampaignListType;
 use Smile\EzUICampaignBundle\Service\ListService;
-use Smile\EzUICampaignBundle\Values\CampaignList;
+use Smile\EzUICampaignBundle\Values\Core\CampaignList;
 use Symfony\Component\HttpFoundation\Request;
 
 class ListController extends AbstractCampaignController

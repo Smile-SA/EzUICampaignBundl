@@ -5,7 +5,7 @@ smileezcampaign_campaign:
         tabItem: "[a-z]+"
 
 smileezcampaign_campaign_view:
-    path: /campaign/campaign/{id}/{mode}
+    path: /campaign/campaign/view/{id}/{mode}
     defaults: { _controller: smile.campaign.controller.campaign:viewAction, mode: false }
     requirements:
         id: "[0-9a-z]+"
@@ -33,7 +33,7 @@ smileezcampaign_campaign_folders_new:
     defaults: { _controller: smile.campaign.controller.campaigns:folderNewAction }
 
 smileezcampaign_list_view:
-    path: /campaign/list/{id}
+    path: /campaign/list/view/{id}
     defaults: { _controller: smile.campaign.controller.list:viewAction }
     requirements:
         id: "[0-9a-z]+"
