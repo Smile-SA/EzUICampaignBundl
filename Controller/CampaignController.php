@@ -2,9 +2,11 @@
 
 namespace Smile\EzUICampaignBundle\Controller;
 
+use eZ\Publish\API\Repository\Values\ValueObject;
 use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignFolderMapper;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignMapper;
+use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignFolderActionDispatcher;
 use Smile\EzUICampaignBundle\Form\Type\CampaignFolderType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignType;
 use Smile\EzUICampaignBundle\Service\CampaignFolderService;
@@ -14,6 +16,7 @@ use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
 use Smile\EzUICampaignBundle\Values\Campaign;
 use Smile\EzUICampaignBundle\Values\Core\CampaignFolder;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,7 +44,7 @@ class CampaignController extends AbstractCampaignController
     /** @var ActionDispatcherInterface $campaignActionDispatcher */
     protected $campaignActionDispatcher;
 
-    /** @var ActionDispatcherInterface $campaignFolderActionDispatcher */
+    /** @var CampaignFolderActionDispatcher $campaignFolderActionDispatcher */
     protected $campaignFolderActionDispatcher;
 
     /**
@@ -57,7 +60,7 @@ class CampaignController extends AbstractCampaignController
         CampaignFolderService $campaignFolderService,
         CampaignFoldersService $campaignFoldersService,
         ActionDispatcherInterface $campaignActionDispatcher,
-        ActionDispatcherInterface $campaignFolderActionDispatcher
+        CampaignFolderActionDispatcher $campaignFolderActionDispatcher
     )
     {
         $this->tabItems = $tabItems;
@@ -209,21 +212,28 @@ class CampaignController extends AbstractCampaignController
 
         $data = (new CampaignFolderMapper())->mapToFormData($campaignFolder);
         $actionUrl = $this->generateUrl('smileezcampaign_folder_edit', ['id' => $campaignFolderID]);
+        $redirectUrl = $this->generateUrl('smileezcampaign_campaign');
         $form = $this->createForm(CampaignFolderType::class, $data);
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $this->campaignFolderService->post($data->name);
-            $this->campaignFolderActionDispatcher->dispatchFormAction(
-                $form,
-                $data,
-                $form->getClickedButton() ? $form->getClickedButton()->getName() : null
-            );
+            $this->dispatchFormAction($this->campaignFolderActionDispatcher, $form, $data, array(
+                'name' => $data->name
+            ));
+
+            try {
+                $this->campaignFolderService->post($data->name);
+                $this->notify('campaign.folder.created');
+            } catch (MailchimpException $e) {
+                $this->notifyError(
+                    'campaign.folder.cannot_create'
+                );
+            }
 
             if ($response = $this->campaignFolderActionDispatcher->getResponse()) {
                 return $response;
             }
 
-            return $this->redirectAfterFormPost($actionUrl);
+            return $this->redirectAfterFormPost($redirectUrl);
         }
 
         return $this->render('SmileEzUICampaignBundle:campaign:campaignFolders/edit.html.twig', [
@@ -231,5 +241,19 @@ class CampaignController extends AbstractCampaignController
             'campaignFolder' => $data,
             'actionUrl' => $actionUrl,
         ]);
+    }
+
+    protected function dispatchFormAction(
+        ActionDispatcherInterface $actionDispatcher,
+        Form $form,
+        ValueObject $data,
+        array $options
+    ) {
+        $actionDispatcher->dispatchFormAction(
+            $form,
+            $data,
+            $form->getClickedButton() ? $form->getClickedButton()->getName() : null,
+            $options
+        );
     }
 }

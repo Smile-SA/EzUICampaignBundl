@@ -6,6 +6,8 @@ parameters:
     smile.campaign.service.list.class: Smile\EzUICampaignBundle\Service\ListService
     smile.campaign.service.lists.class: Smile\EzUICampaignBundle\Service\ListsService
 
+    smile.campaign.action_dispatcher.folder.class: Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignFolderActionDispatcher
+
     smile.campaign.controller.campaign.class: Smile\EzUICampaignBundle\Controller\CampaignController
     smile.campaign.controller.list.class: Smile\EzUICampaignBundle\Controller\ListController
     smile.campaign.controller.campaigns.class: Smile\EzUICampaignBundle\Controller\CampaignsController
@@ -46,6 +48,11 @@ services:
         arguments:
             - @welp_mailchimp.mailchimp_master
 
+    # action dispatcher
+    smile.campaign.action_dispatcher.folder:
+        class: %smile.campaign.action_dispatcher.folder.class%
+        parent: ezrepoforms.action_dispatcher.base
+
     # Controllers
     smile.campaign.controller.campaign:
         class: %smile.campaign.controller.campaign.class%
@@ -57,28 +64,28 @@ services:
             - @smile.campaign.service.campaign_folder
             - @smile.campaign.service.campaign_folders
             - @ezrepoforms.action_dispatcher.content_type
-            - @ezrepoforms.action_dispatcher.content_type
-        parent: ezpublish.controller.base
+            - @smile.campaign.action_dispatcher.folder
+        parent: ezsystems.platformui.controller.base
 
     smile.campaign.controller.list:
         class: %smile.campaign.controller.list.class%
         arguments:
             - @smile.campaign.service.list
             - @ezrepoforms.action_dispatcher.content_type
-        parent: ezpublish.controller.base
+        parent: ezsystems.platformui.controller.base
 
     smile.campaign.controller.campaigns:
         class: %smile.campaign.controller.campaigns.class%
         arguments:
             - @smile.campaign.service.campaigns
             - @smile.campaign.service.campaign_folders
-        parent: ezpublish.controller.base
+        parent: ezsystems.platformui.controller.base
 
     smile.campaign.controller.lists:
         class: %smile.campaign.controller.lists.class%
         arguments:
             - @smile.campaign.service.lists
-        parent: ezpublish.controller.base
+        parent: ezsystems.platformui.controller.base
 
 
 
