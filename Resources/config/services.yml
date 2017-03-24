@@ -7,6 +7,8 @@ parameters:
     smile.campaign.service.lists.class: Smile\EzUICampaignBundle\Service\ListsService
 
     smile.campaign.action_dispatcher.folder.class: Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignFolderActionDispatcher
+    smile.campaign.action_dispatcher.list.class: Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignListActionDispatcher
+    smile.campaign.action_dispatcher.campaign.class: Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignActionDispatcher
 
     smile.campaign.controller.campaign.class: Smile\EzUICampaignBundle\Controller\CampaignController
     smile.campaign.controller.list.class: Smile\EzUICampaignBundle\Controller\ListController
@@ -53,6 +55,14 @@ services:
         class: %smile.campaign.action_dispatcher.folder.class%
         parent: ezrepoforms.action_dispatcher.base
 
+    smile.campaign.action_dispatcher.list:
+        class: %smile.campaign.action_dispatcher.list.class%
+        parent: ezrepoforms.action_dispatcher.base
+
+    smile.campaign.action_dispatcher.campaign:
+        class: %smile.campaign.action_dispatcher.campaign.class%
+        parent: ezrepoforms.action_dispatcher.base
+
     # Controllers
     smile.campaign.controller.campaign:
         class: %smile.campaign.controller.campaign.class%
@@ -63,7 +73,7 @@ services:
             - @smile.campaign.service.lists
             - @smile.campaign.service.campaign_folder
             - @smile.campaign.service.campaign_folders
-            - @ezrepoforms.action_dispatcher.content_type
+            - @smile.campaign.action_dispatcher.campaign
             - @smile.campaign.action_dispatcher.folder
         parent: ezsystems.platformui.controller.base
 
@@ -71,7 +81,7 @@ services:
         class: %smile.campaign.controller.list.class%
         arguments:
             - @smile.campaign.service.list
-            - @ezrepoforms.action_dispatcher.content_type
+            - @smile.campaign.action_dispatcher.list
         parent: ezsystems.platformui.controller.base
 
     smile.campaign.controller.campaigns:

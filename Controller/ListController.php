@@ -4,6 +4,7 @@ namespace Smile\EzUICampaignBundle\Controller;
 
 use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignListMapper;
+use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignListActionDispatcher;
 use Smile\EzUICampaignBundle\Form\Type\CampaignListType;
 use Smile\EzUICampaignBundle\Service\ListService;
 use Smile\EzUICampaignBundle\Values\Core\CampaignList;
@@ -14,12 +15,12 @@ class ListController extends AbstractCampaignController
     /** @var ListService $listService */
     protected $listService;
 
-    /** @var ActionDispatcherInterface $campaignListActionDispatcher */
+    /** @var CampaignListActionDispatcher $campaignListActionDispatcher */
     protected $campaignListActionDispatcher;
 
     public function __construct(
         ListService $listService,
-        ActionDispatcherInterface $campaignListActionDispatcher
+        CampaignListActionDispatcher $campaignListActionDispatcher
     )
     {
         $this->listService = $listService;

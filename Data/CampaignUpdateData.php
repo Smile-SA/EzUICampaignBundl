@@ -13,4 +13,9 @@ class CampaignUpdateData extends CampaignUpdateStruct
     {
         return $this->campaign->id;
     }
+
+    protected function getIdentifierValue()
+    {
+        return null;
+    }
 }

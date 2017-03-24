@@ -6,6 +6,7 @@ use eZ\Publish\API\Repository\Values\ValueObject;
 use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignFolderMapper;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignMapper;
+use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignActionDispatcher;
 use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignFolderActionDispatcher;
 use Smile\EzUICampaignBundle\Form\Type\CampaignFolderType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignType;
@@ -39,9 +40,10 @@ class CampaignController extends AbstractCampaignController
     /** @var CampaignFolderService $campaignFolderService */
     protected $campaignFolderService;
 
+    /** @var CampaignFoldersService $campaignFoldersService */
     protected $campaignFoldersService;
 
-    /** @var ActionDispatcherInterface $campaignActionDispatcher */
+    /** @var CampaignActionDispatcher $campaignActionDispatcher */
     protected $campaignActionDispatcher;
 
     /** @var CampaignFolderActionDispatcher $campaignFolderActionDispatcher */
@@ -59,7 +61,7 @@ class CampaignController extends AbstractCampaignController
         ListsService $listsService,
         CampaignFolderService $campaignFolderService,
         CampaignFoldersService $campaignFoldersService,
-        ActionDispatcherInterface $campaignActionDispatcher,
+        CampaignActionDispatcher $campaignActionDispatcher,
         CampaignFolderActionDispatcher $campaignFolderActionDispatcher
     )
     {
