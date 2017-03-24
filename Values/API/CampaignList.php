@@ -9,4 +9,16 @@ abstract class CampaignList extends ValueObject
     protected $id;
 
     protected $name;
+
+    protected $company;
+
+    protected $address;
+
+    protected $city;
+
+    protected $state;
+
+    protected $zip;
+
+    protected $country;
 }

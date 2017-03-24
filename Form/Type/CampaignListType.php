@@ -3,6 +3,8 @@
 namespace Smile\EzUICampaignBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,6 +16,12 @@ class CampaignListType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, ['label' => 'campaign.list.name'])
+            ->add('company', TextType::class, ['label' => 'campaign.list.company'])
+            ->add('address', TextType::class, ['label' => 'campaign.list.address'])
+            ->add('city', TextType::class, ['label' => 'campaign.list.city'])
+            ->add('state', TextType::class, ['label' => 'campaign.list.state'])
+            ->add('zip', IntegerType::class, ['label' => 'campaign.list.zip'])
+            ->add('country', CountryType::class, ['label' => 'campaign.list.country'])
             ->add('save', SubmitType::class, ['label' => 'campaign.save']);
     }
 

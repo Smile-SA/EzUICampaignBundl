@@ -8,6 +8,7 @@ use Smile\EzUICampaignBundle\Data\Mapper\CampaignMapper;
 use Smile\EzUICampaignBundle\Form\Type\CampaignFolderType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignType;
 use Smile\EzUICampaignBundle\Service\CampaignFolderService;
+use Smile\EzUICampaignBundle\Service\CampaignFoldersService;
 use Smile\EzUICampaignBundle\Service\CampaignService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
@@ -35,6 +36,8 @@ class CampaignController extends AbstractCampaignController
     /** @var CampaignFolderService $campaignFolderService */
     protected $campaignFolderService;
 
+    protected $campaignFoldersService;
+
     /** @var ActionDispatcherInterface $campaignActionDispatcher */
     protected $campaignActionDispatcher;
 
@@ -52,6 +55,7 @@ class CampaignController extends AbstractCampaignController
         CampaignService $campaignService,
         ListsService $listsService,
         CampaignFolderService $campaignFolderService,
+        CampaignFoldersService $campaignFoldersService,
         ActionDispatcherInterface $campaignActionDispatcher,
         ActionDispatcherInterface $campaignFolderActionDispatcher
     )
@@ -61,6 +65,7 @@ class CampaignController extends AbstractCampaignController
         $this->campaignService = $campaignService;
         $this->listsService = $listsService;
         $this->campaignFolderService = $campaignFolderService;
+        $this->campaignFoldersService = $campaignFoldersService;
         $this->campaignActionDispatcher = $campaignActionDispatcher;
         $this->campaignFolderActionDispatcher = $campaignFolderActionDispatcher;
     }
@@ -207,11 +212,13 @@ class CampaignController extends AbstractCampaignController
         $form = $this->createForm(CampaignFolderType::class, $data);
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $this->campaignFolderService->post($data->name);
             $this->campaignFolderActionDispatcher->dispatchFormAction(
                 $form,
                 $data,
                 $form->getClickedButton() ? $form->getClickedButton()->getName() : null
             );
+
             if ($response = $this->campaignFolderActionDispatcher->getResponse()) {
                 return $response;
             }

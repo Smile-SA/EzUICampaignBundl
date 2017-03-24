@@ -46,6 +46,10 @@ class ListController extends AbstractCampaignController
         $form = $this->createForm(CampaignListType::class, $data);
         $form->handleRequest($request);
         if ($form->isValid()) {
+            $this->listService->post(
+                $data->name, $data->company, $data->address,
+                $data->city, $data->state, $data->zip, $data->country
+            );
             $this->campaignListActionDispatcher->dispatchFormAction(
                 $form,
                 $data,
