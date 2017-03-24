@@ -17,4 +17,6 @@ class CampaignListUpdateStruct extends CampaignListStruct
     public $zip = null;
 
     public $country = null;
+
+    public $campaign = null;
 }

@@ -4,7 +4,15 @@ namespace Smile\EzUICampaignBundle\Values;
 
 class CampaignCreateStruct extends CampaignStruct
 {
-    public $settings;
+    public $list_id;
 
-    public $recipients;
+    public $subject_line;
+
+    public $title;
+
+    public $fromName;
+
+    public $reply_to;
+
+    public $folder_id;
 }

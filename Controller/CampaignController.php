@@ -15,7 +15,7 @@ use Smile\EzUICampaignBundle\Service\CampaignFoldersService;
 use Smile\EzUICampaignBundle\Service\CampaignService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
 use Smile\EzUICampaignBundle\Service\ListsService;
-use Smile\EzUICampaignBundle\Values\Campaign;
+use Smile\EzUICampaignBundle\Values\Core\Campaign;
 use Smile\EzUICampaignBundle\Values\Core\CampaignFolder;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;

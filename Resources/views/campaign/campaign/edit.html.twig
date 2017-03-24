@@ -1,0 +1,53 @@
+{% extends "eZPlatformUIBundle::pjax_admin.html.twig" %}
+{% form_theme form 'SmileEzUICampaignBundle:form:fields.html.twig' %}
+
+{% trans_default_domain "smileezuicampaign" %}
+
+{% set editTitle = campaign.new ? "campaign.campaign.create.title"|trans() : "campaign.list.campaign.title"|trans({"%identifier%": campaignList.id}) %}
+
+{% block title %}
+    {{ editTitle }}
+{% endblock %}
+
+{% block header_breadcrumbs %}
+    {% set breadcrumb_items = [
+    {link: path('smileezcampaign_campaign'), label: 'Campaign'|trans},
+    {link: null, label: editTitle}
+    ] %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header_title %}
+    <h1 class="ez-page-header-name" data-icon="&#xe91f;">
+        {{ editTitle }}
+    </h1>
+{% endblock %}
+
+{% block content %}
+    <section class="ez-serverside-content">
+        {{ form_start(form, {'action': actionUrl, "attr": {"class": "pure-form pure-form-aligned"}}) }}
+        {{ form_errors(form) }}
+
+        <fieldset>
+            <div class="pure-control-group">
+                {{ form_label(form.recipients) }}
+                {{ form_errors(form.recipients) }}
+                {{ form_widget(form.recipients) }}
+            </div>
+
+            <div class="pure-control-group">
+                {{ form_label(form.settings) }}
+                {{ form_errors(form.settings) }}
+                {{ form_widget(form.settings) }}
+            </div>
+        </fieldset>
+
+        <div class="pure-controls">
+            <a href="{{ path("smileezcampaign_campaign") }}"
+               class="pure-button ez-button">{{ "campaign.cancel"|trans }}</a>
+            {{ form_widget(form.save, {"attr": {"class": "pure-button ez-button"}}) }}
+        </div>
+
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

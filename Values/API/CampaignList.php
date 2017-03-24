@@ -21,4 +21,6 @@ abstract class CampaignList extends ValueObject
     protected $zip;
 
     protected $country;
+
+    protected $campaign;
 }

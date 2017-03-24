@@ -17,4 +17,6 @@ class CampaignListCreateStruct extends CampaignListStruct
     public $zip;
 
     public $country;
+
+    public $campaign;
 }

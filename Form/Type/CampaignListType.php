@@ -16,12 +16,16 @@ class CampaignListType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, ['label' => 'campaign.list.name'])
-            ->add('company', TextType::class, ['label' => 'campaign.list.company'])
-            ->add('address', TextType::class, ['label' => 'campaign.list.address'])
-            ->add('city', TextType::class, ['label' => 'campaign.list.city'])
-            ->add('state', TextType::class, ['label' => 'campaign.list.state'])
-            ->add('zip', IntegerType::class, ['label' => 'campaign.list.zip'])
-            ->add('country', CountryType::class, ['label' => 'campaign.list.country'])
+            ->add('campaign', \Smile\EzUICampaignBundle\Form\Type\Field\CampaignType::class, ['label' => 'campaign.list.campaign'])
+            ->add(
+                $builder->create('contact', 'form', array('virtual' => true))
+                    ->add('company', TextType::class, ['label' => 'campaign.list.company'])
+                    ->add('address', TextType::class, ['label' => 'campaign.list.address'])
+                    ->add('city', TextType::class, ['label' => 'campaign.list.city'])
+                    ->add('state', TextType::class, ['label' => 'campaign.list.state'])
+                    ->add('zip', IntegerType::class, ['label' => 'campaign.list.zip'])
+                    ->add('country', CountryType::class, ['label' => 'campaign.list.country'])
+            )
             ->add('save', SubmitType::class, ['label' => 'campaign.save']);
     }
 

@@ -38,4 +38,9 @@ class CampaignList extends \Smile\EzUICampaignBundle\Values\API\CampaignList
     {
         return $this->country;
     }
+
+    public function getCampaign()
+    {
+        return $this->campaign;
+    }
 }
