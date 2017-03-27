@@ -29,6 +29,9 @@
                 <td>{{ campaign.emails_sent }}</td>
                 <td>{{ campaign.send_time }}</td>
                 <td>{{ campaign.recipients.list_name }}</td>
+                <td><a href="{{ path("smileezcampaign_campaign_edit", {'id': campaign.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'campaign.edit'|trans }}</a></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
             </tr>

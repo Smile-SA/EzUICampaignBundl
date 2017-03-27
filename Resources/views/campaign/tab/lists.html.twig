@@ -15,11 +15,24 @@
     {% for list in params.lists.lists %}
         <tr>
             <td>{{ list.id }}</td>
-            <td><a href="{{ path("smileezcampaign_list_view", {"id": list.id}) }}">{{ list.name }}</a></td>
+            <td><a href="{{ path("smileezcampaign_list_view", {"campaignListID": list.id}) }}">{{ list.name }}</a></td>
             <td>{{ list.date_created }}</td>
             <td>{{ list.stats.member_count }}</td>
-            <td></td>
-            <td></td>
+            <td><a href="{{ path("smileezcampaign_list_edit", {'campaignListID': list.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'campaign.edit'|trans }}</a></td>
+            <td>
+                {% set deleteForm = params.delete_forms_by_id[list.id] %}
+                {{ form_start(deleteForm, {"action": path("smileezcampaign_list_delete", {"campaignListID": list.id})}) }}
+                {{ form_widget(deleteForm.listID) }}
+                {{
+                    form_widget(
+                        deleteForm.delete,
+                        {
+                            "attr": {"class": "pure-button ez-button ez-remove-section-button ez-font-icon ez-button-delete"}
+                        }
+                    )
+                }}
+                {{ form_end(deleteForm) }}
+            </td>
         </tr>
     {% endfor %}
 

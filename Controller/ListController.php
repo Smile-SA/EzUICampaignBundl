@@ -27,10 +27,10 @@ class ListController extends AbstractCampaignController
         $this->campaignListActionDispatcher = $campaignListActionDispatcher;
     }
 
-    public function viewAction($id)
+    public function viewAction($campaignListID)
     {
         return $this->render('SmileEzUICampaignBundle:campaign:list/view.html.twig', [
-            'list' => $this->listService->get($id)
+            'list' => $this->listService->get($campaignListID)
         ]);
     }
 
@@ -38,12 +38,22 @@ class ListController extends AbstractCampaignController
     {
         if ($campaignListID) {
             $campaignList = $this->listService->get($campaignListID);
+            $campaignList = new CampaignList([
+                'id' => $campaignList['id'],
+                'name' => $campaignList['name'],
+                'company' => $campaignList['contact']['company'],
+                'address' => $campaignList['contact']['address1'],
+                'city' => $campaignList['contact']['city'],
+                'state' => $campaignList['contact']['state'],
+                'zip' => $campaignList['contact']['zip'],
+                'country' => $campaignList['contact']['country']
+            ]);
         } else {
             $campaignList = new CampaignList(['name' => '_new_']);
         }
 
         $data = (new CampaignListMapper())->mapToFormData($campaignList);
-        $actionUrl = $this->generateUrl('smileezcampaign_list_edit', ['id' => $campaignListID]);
+        $actionUrl = $this->generateUrl('smileezcampaign_list_edit', ['campaignListID' => $campaignListID]);
         $form = $this->createForm(CampaignListType::class, $data);
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -68,5 +78,9 @@ class ListController extends AbstractCampaignController
             'campaignList' => $data,
             'actionUrl' => $actionUrl,
         ]);
+    }
+
+    public function deleteAction(Request $request, $campaignListID)
+    {
     }
 }

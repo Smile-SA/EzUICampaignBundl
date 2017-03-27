@@ -33,14 +33,18 @@ smileezcampaign_campaign_folders_new:
     defaults: { _controller: smile.campaign.controller.campaigns:folderNewAction }
 
 smileezcampaign_list_view:
-    path: /campaign/list/view/{id}
+    path: /campaign/list/view/{campaignListID}
     defaults: { _controller: smile.campaign.controller.list:viewAction }
     requirements:
-        id: "[0-9a-z]+"
+        campaignListID: "[0-9a-z]+"
 
 smileezcampaign_list_edit:
-    path: /campaign/list/edit/{id}
-    defaults: { _controller: smile.campaign.controller.list:editAction, id: ~ }
+    path: /campaign/list/edit/{campaignListID}
+    defaults: { _controller: smile.campaign.controller.list:editAction, campaignListID: ~ }
+
+smileezcampaign_list_delete:
+    path: /campaign/list/delete/{campaignListID}
+    defaults: { _controller: smile.campaign.controller.list:deleteAction }
 
 smileezcampaign_lists_new:
     path: /campaign/list/new

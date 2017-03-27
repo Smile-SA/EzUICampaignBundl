@@ -21,7 +21,16 @@ class CampaignListMapper  implements FormDataMapperInterface
     public function mapToFormData(ValueObject $campaignList, array $params = [])
     {
         if (!$this->isCampaignListNew($campaignList)) {
-            $data = new CampaignListUpdateData(['campaignList' => $campaignList]);
+            $data = new CampaignListUpdateData([
+                'id' => $campaignList->id,
+                'name' => $campaignList->name,
+                'company' => $campaignList->company,
+                'address' => $campaignList->address,
+                'city' => $campaignList->city,
+                'state' => $campaignList->state,
+                'zip' => $campaignList->zip,
+                'country' => $campaignList->country
+            ]);
         } else {
             $data = new CampaignListCreateData(['campaignList' => $campaignList]);
         }

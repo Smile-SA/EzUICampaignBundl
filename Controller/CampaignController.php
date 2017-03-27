@@ -9,6 +9,7 @@ use Smile\EzUICampaignBundle\Data\Mapper\CampaignMapper;
 use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignActionDispatcher;
 use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignFolderActionDispatcher;
 use Smile\EzUICampaignBundle\Form\Type\CampaignFolderType;
+use Smile\EzUICampaignBundle\Form\Type\CampaignListDeleteType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignType;
 use Smile\EzUICampaignBundle\Service\CampaignFolderService;
 use Smile\EzUICampaignBundle\Service\CampaignFoldersService;
@@ -127,7 +128,16 @@ class CampaignController extends AbstractCampaignController
      */
     protected function tabItemLists($paramsTwig)
     {
+        $params['delete_forms_by_id'] = array();
         $params['lists'] = $this->listsService->get(0);
+
+        foreach ($params['lists']['lists'] as $list) {
+            $listID = $list['id'];
+            $params['delete_forms_by_id'][$listID] = $this->createForm(
+                CampaignListDeleteType::class,
+                ['listID' => $listID]
+            )->createView();
+        }
 
         return $params;
     }
