@@ -76,15 +76,11 @@ Add in your layout reference to __smilecampaign.js__
 
 ## TODO
 
-* new campaign folder
 * new campaign
 * edit campaign
 * delete campaign
 * campaign pagination
 * send campaign
 * send campaign test
-* new list
-* edit list
-* delete list
 * list pagination
 * campaign fieldtype
