@@ -22,5 +22,13 @@ abstract class CampaignList extends ValueObject
 
     protected $country;
 
-    protected $campaign;
+    protected $permission_reminder;
+
+    protected $from_name;
+
+    protected $from_email;
+
+    protected $subject;
+
+    protected $language;
 }

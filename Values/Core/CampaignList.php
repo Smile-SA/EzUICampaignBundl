@@ -44,8 +44,28 @@ class CampaignList extends \Smile\EzUICampaignBundle\Values\API\CampaignList
         return $this->country;
     }
 
-    public function getCampaign()
+    public function getPermissionReminder()
     {
-        return $this->campaign;
+        return $this->permission_reminder;
+    }
+
+    public function getFromName()
+    {
+        return $this->from_name;
+    }
+
+    public function getFromEmail()
+    {
+        return $this->from_email;
+    }
+
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    public function getLanguage()
+    {
+        return $this->language;
     }
 }

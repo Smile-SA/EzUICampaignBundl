@@ -15,7 +15,10 @@ class ListService extends BaseService
         return $list;
     }
 
-    public function post($name, $company, $address, $city, $state, $zip, $country)
+    public function post(
+        $name, $company, $address, $city, $state, $zip, $country, $permission_reminder,
+        $from_name, $from_email, $subject, $language
+    )
     {
         $return = $this->mailChimp->post('/lists', array(
             'name' => $name,
@@ -26,7 +29,15 @@ class ListService extends BaseService
                 'state' => $state,
                 'zip' => $zip,
                 'country' => $country
-            )
+            ),
+            'permission_reminder' => $permission_reminder,
+            'campaign_defaults' => array(
+                'from_name' => $from_name,
+                'from_email' => $from_email,
+                'subject' => $subject,
+                'language' => $language
+            ),
+            'email_type_option' => true
         ));
 
         if (!$this->mailChimp->success()) {
@@ -36,7 +47,10 @@ class ListService extends BaseService
         return $return;
     }
 
-    public function patch($listID, $name, $company, $address, $city, $state, $zip, $country)
+    public function patch(
+        $listID, $name, $company, $address, $city, $state, $zip, $country, $permission_reminder,
+        $from_name, $from_email, $subject, $language
+    )
     {
         $return = $this->mailChimp->patch('/lists/' . $listID, array(
             'name' => $name,
@@ -47,7 +61,15 @@ class ListService extends BaseService
                 'state' => $state,
                 'zip' => $zip,
                 'country' => $country
-            )
+            ),
+            'permission_reminder' => $permission_reminder,
+            'campaign_defaults' => array(
+                'from_name' => $from_name,
+                'from_email' => $from_email,
+                'subject' => $subject,
+                'language' => $language
+            ),
+            'email_type_option' => true
         ));
 
         if (!$this->mailChimp->success()) {

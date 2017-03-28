@@ -29,7 +29,12 @@ class CampaignListMapper  implements FormDataMapperInterface
                 'city' => $campaignList->city,
                 'state' => $campaignList->state,
                 'zip' => $campaignList->zip,
-                'country' => $campaignList->country
+                'country' => $campaignList->country,
+                'permission_reminder' => $campaignList->permission_reminder,
+                'from_name' => $campaignList->from_name,
+                'from_email' => $campaignList->from_email,
+                'subject' => $campaignList->subject,
+                'language' => $campaignList->language
             ]);
         } else {
             $data = new CampaignListCreateData(['campaignList' => $campaignList]);

@@ -18,5 +18,13 @@ class CampaignListCreateStruct extends CampaignListStruct
 
     public $country;
 
-    public $campaign;
+    public $permission_reminder;
+
+    public $from_name;
+
+    public $from_email;
+
+    public $subject;
+
+    public $language;
 }

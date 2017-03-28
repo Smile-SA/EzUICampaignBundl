@@ -18,5 +18,13 @@ class CampaignListUpdateStruct extends CampaignListStruct
 
     public $country = null;
 
-    public $campaign = null;
+    public $permission_reminder = null;
+
+    public $from_name = null;
+
+    public $from_email = null;
+
+    public $subject = null;
+
+    public $language = null;
 }
