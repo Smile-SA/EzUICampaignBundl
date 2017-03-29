@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-03-29T12:17:28Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="69390e166570e5e9ba13ae3602feaa0111f2685b" resname="Campaign">
+        <source>Campaign</source>
+        <target state="new">Campaign</target>
+        <note>key: Campaign</note>
+        <jms:reference-file line="14">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="10">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/view.html.twig</jms:reference-file>
+        <jms:reference-file line="13">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaignFolders/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="10">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaignFolders/new.html.twig</jms:reference-file>
+        <jms:reference-file line="10">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaigns/new.html.twig</jms:reference-file>
+        <jms:reference-file line="14">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/list/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="10">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/list/view.html.twig</jms:reference-file>
+        <jms:reference-file line="10">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/lists/new.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="01a23a288f607acdaa9c175c39525717bbe3df9e" resname="Campaigns">
+        <source>Campaigns</source>
+        <target state="new">Campaigns</target>
+        <note>key: Campaigns</note>
+        <jms:reference-file line="14">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/index.html.twig</jms:reference-file>
+        <jms:reference-file line="7">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="aaf9a8a4e76dcdcf2f4c78ddb831f501452fbf35" resname="New campaign">
+        <source>New campaign</source>
+        <target state="new">New campaign</target>
+        <note>key: New campaign</note>
+        <jms:reference-file line="11">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaigns/new.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="40e8d259fc713caa24de6c031812172d71226d0b" resname="New campaign folder">
+        <source>New campaign folder</source>
+        <target state="new">New campaign folder</target>
+        <note>key: New campaign folder</note>
+        <jms:reference-file line="11">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaignFolders/new.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d44f1a8e92ac81246fa2694a6277cb6fdb43fdad" resname="New list">
+        <source>New list</source>
+        <target state="new">New list</target>
+        <note>key: New list</note>
+        <jms:reference-file line="11">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/lists/new.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="acf72e77847a63d46fe95e7a98a425f99443829c" resname="campaign.campaign.create.title">
+        <source>Title</source>
+        <target state="new">Title</target>
+        <note>key: campaign.campaign.create.title</note>
+        <jms:reference-file line="6">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5240757cde4591ed01705c47556207a4a9608bce" resname="campaign.campaign.folder_id">
+        <source>Folder</source>
+        <target state="new">Folder</target>
+        <note>key: campaign.campaign.folder_id</note>
+        <jms:reference-file line="27">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7f3db8b455b9591fe373d4f7331abca5f75ea268" resname="campaign.campaign.from_name">
+        <source>From name</source>
+        <target state="new">From name</target>
+        <note>key: campaign.campaign.from_name</note>
+        <jms:reference-file line="25">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d2d1a3e780ec01e7d77475bff548b563f4c8f64c" resname="campaign.campaign.list">
+        <source>List</source>
+        <target state="new">List</target>
+        <note>key: campaign.campaign.list</note>
+        <jms:reference-file line="19">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d4dd78aa8f09e317b296007afdaaa950d43af684" resname="campaign.campaign.reply_to">
+        <source>Reply to</source>
+        <target state="new">Reply to</target>
+        <note>key: campaign.campaign.reply_to</note>
+        <jms:reference-file line="26">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ed4914164f539a3d5412290c254c19732e55bfb8" resname="campaign.campaign.subject_line">
+        <source>Subject line</source>
+        <target state="new">Subject line</target>
+        <note>key: campaign.campaign.subject_line</note>
+        <jms:reference-file line="23">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9dc0364aea33b83ae2cb07c9bb523ac801b45069" resname="campaign.campaign.title">
+        <source>Title</source>
+        <target state="new">Title</target>
+        <note>key: campaign.campaign.title</note>
+        <jms:reference-file line="24">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="77a3cb40a597931affce8dc26f297e929c75dbe4" resname="campaign.cancel">
+        <source>Cancel</source>
+        <target state="new">Cancel</target>
+        <note>key: campaign.cancel</note>
+        <jms:reference-file line="47">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="40">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaignFolders/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="59">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/list/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="222529aac645743f477aeda842704da7d44b0a78" resname="campaign.create">
+        <source>Create</source>
+        <target state="new">Create</target>
+        <note>key: campaign.create</note>
+        <jms:reference-file line="34">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignCreateType.php</jms:reference-file>
+        <jms:reference-file line="36">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignFolderCreateType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6061fc1304924c8215a7341881ac620dbd94844b" resname="campaign.delete">
+        <source>Delete</source>
+        <target state="new">Delete</target>
+        <note>key: campaign.delete</note>
+        <jms:reference-file line="35">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignDeleteType.php</jms:reference-file>
+        <jms:reference-file line="35">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListDeleteType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="251bbed78ebe73f21b8c2c9eddd8c1152da42016" resname="campaign.edit">
+        <source>Edit</source>
+        <target state="new">Edit</target>
+        <note>key: campaign.edit</note>
+        <jms:reference-file line="47">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/view.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2cd1ea009d95d5387919dbe96b3c124ea15aaf61" resname="campaign.folder.create.title">
+        <source>Create</source>
+        <target state="new">Create</target>
+        <note>key: campaign.folder.create.title</note>
+        <jms:reference-file line="5">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaignFolders/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="68d948f7e362b751b0fe6fbbd444bd7e85dd6246" resname="campaign.folder.edit.title">
+        <source>Edit</source>
+        <target state="new">Edit</target>
+        <note>key: campaign.folder.edit.title</note>
+        <jms:reference-file line="5">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaignFolders/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="dce2b75873b1cdc9e8e6965bc7b3a65d566ac6c8" resname="campaign.folder.name">
+        <source>Name</source>
+        <target state="new">Name</target>
+        <note>key: campaign.folder.name</note>
+        <jms:reference-file line="16">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignFolderType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="396c3db38e9aa32d340b5337ff4312751a1b9fc1" resname="campaign.from_name">
+        <source>From name</source>
+        <target state="new">From name</target>
+        <note>key: campaign.from_name</note>
+        <jms:reference-file line="38">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/view.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="308684418808d31f12d3ddaf68e9d2cc3f7d79c2" resname="campaign.list.address">
+        <source>Address</source>
+        <target state="new">Address</target>
+        <note>key: campaign.list.address</note>
+        <jms:reference-file line="24">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="616dc2f7676e23151be992d4d691ab79dd978849" resname="campaign.list.campaign.title">
+        <source>Title</source>
+        <target state="new">Title</target>
+        <note>key: campaign.list.campaign.title</note>
+        <jms:reference-file line="6">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5fdc7869809c2a6ace2616f678b450b697e67f14" resname="campaign.list.city">
+        <source>City</source>
+        <target state="new">City</target>
+        <note>key: campaign.list.city</note>
+        <jms:reference-file line="25">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="1236e0d017525e5d7eb3c05ecf361b48d9b039c7" resname="campaign.list.company">
+        <source>Company</source>
+        <target state="new">Company</target>
+        <note>key: campaign.list.company</note>
+        <jms:reference-file line="23">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a6838a53fabf291a9682c032efd04614de9e0438" resname="campaign.list.country">
+        <source>Country</source>
+        <target state="new">Country</target>
+        <note>key: campaign.list.country</note>
+        <jms:reference-file line="28">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7d31f8fdf4cccbfb2900844fb53e2b2fb928f9ae" resname="campaign.list.create.title">
+        <source>Create</source>
+        <target state="new">Create</target>
+        <note>key: campaign.list.create.title</note>
+        <jms:reference-file line="6">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/list/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4a7f2977a4ccc80d02af13e2920bc4276b50009b" resname="campaign.list.edit.title">
+        <source>Edit</source>
+        <target state="new">Edit</target>
+        <note>key: campaign.list.edit.title</note>
+        <jms:reference-file line="6">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/list/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="bc51ae456f213eb3b67a84d618f573a832a34219" resname="campaign.list.from_email">
+        <source>From email</source>
+        <target state="new">From email</target>
+        <note>key: campaign.list.from_email</note>
+        <jms:reference-file line="33">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3672a20a3141d62e1dd9c3b5e6a60a48ea5d5b2d" resname="campaign.list.from_name">
+        <source>From name</source>
+        <target state="new">From name</target>
+        <note>key: campaign.list.from_name</note>
+        <jms:reference-file line="32">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2ea5f199fb02338a4e8442352a0fd63ea3fa020b" resname="campaign.list.language">
+        <source>Language</source>
+        <target state="new">Language</target>
+        <note>key: campaign.list.language</note>
+        <jms:reference-file line="35">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f36c7f32c8ef2b1254848a4d137ecb9285b30176" resname="campaign.list.name">
+        <source>Name</source>
+        <target state="new">Name</target>
+        <note>key: campaign.list.name</note>
+        <jms:reference-file line="20">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2e8b18e66db44c046560fdde901cb91c2dbe9241" resname="campaign.list.permission_reminder">
+        <source>Permission reminder</source>
+        <target state="new">Permission reminder</target>
+        <note>key: campaign.list.permission_reminder</note>
+        <jms:reference-file line="37">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c6a333a6ba3dfa43201255a13081d99ac3f45304" resname="campaign.list.state">
+        <source>State</source>
+        <target state="new">State</target>
+        <note>key: campaign.list.state</note>
+        <jms:reference-file line="26">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b5c987d7ab724f7b2aa377736e2ffafa23991e69" resname="campaign.list.subject">
+        <source>Subject</source>
+        <target state="new">Subject</target>
+        <note>key: campaign.list.subject</note>
+        <jms:reference-file line="34">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f7f81b1f1388683d32c3ecca98b545d02d542cd8" resname="campaign.list.zip">
+        <source>Zip</source>
+        <target state="new">Zip</target>
+        <note>key: campaign.list.zip</note>
+        <jms:reference-file line="27">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f7d0520351db89250996e4a60501075fb38085b9" resname="campaign.list_name">
+        <source>List name</source>
+        <target state="new">List name</target>
+        <note>key: campaign.list_name</note>
+        <jms:reference-file line="26">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/view.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9e1597dfb17200c65e2f6ded302e5db213d8ab43" resname="campaign.reply_to">
+        <source>Reply to</source>
+        <target state="new">Reply to</target>
+        <note>key: campaign.reply_to</note>
+        <jms:reference-file line="42">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/view.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d30cebfc516ff91574331ec13edcd40e4dae0690" resname="campaign.save">
+        <source>Save</source>
+        <target state="new">Save</target>
+        <note>key: campaign.save</note>
+        <jms:reference-file line="17">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignFolderType.php</jms:reference-file>
+        <jms:reference-file line="38">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListType.php</jms:reference-file>
+        <jms:reference-file line="29">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cc7d56843ba8208890a4b0e498c14c117f9c43bc" resname="campaign.subject_line">
+        <source>Subject line</source>
+        <target state="new">Subject line</target>
+        <note>key: campaign.subject_line</note>
+        <jms:reference-file line="30">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/view.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0600ac4c8319ebdf1489c6f27a36c0c90fc5d1d1" resname="campaign.title">
+        <source>Title</source>
+        <target state="new">Title</target>
+        <note>key: campaign.title</note>
+        <jms:reference-file line="34">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/campaign/view.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f9da80115fbdb0f4a73f853554b226f930b48a4c" resname="list.create">
+        <source>Create</source>
+        <target state="new">Create</target>
+        <note>key: list.create</note>
+        <jms:reference-file line="34">/../../../../.././src/Smile/EzUICampaignBundle/Form/Type/CampaignListCreateType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="aa241d55b3a5213b8701bbde12971c9df1f9c3a5" resname="list.edit">
+        <source>Edit</source>
+        <target state="new">Edit</target>
+        <note>key: list.edit</note>
+        <jms:reference-file line="31">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/list/view.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d9e4f862a2eea20ab586f7685cdb4a78596ea73e" resname="list.name">
+        <source>Name</source>
+        <target state="new">Name</target>
+        <note>key: list.name</note>
+        <jms:reference-file line="26">/../../../../.././src/Smile/EzUICampaignBundle/Resources/views/campaign/list/view.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="dd4f9f172aea632683f6bd096d00a0a09c49af2c" resname="smileezuicampaign.tab.campaigns.title">
+        <source>Campaigns</source>
+        <target state="new">Campaigns</target>
+        <note>key: smileezuicampaign.tab.campaigns.title</note>
+        <jms:reference-file>./src/Smile/EzUICampaignBundle/Resources/public/js/views/smileez-uicampaign-view.js</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="96ad82523af49dbf50b85ffd64a4a08e861b1bf2" resname="smileezuicampaign.tab.lists.title">
+        <source>Lists</source>
+        <target state="new">Lists</target>
+        <note>key: smileezuicampaign.tab.lists.title</note>
+        <jms:reference-file>./src/Smile/EzUICampaignBundle/Resources/public/js/views/smileez-uicampaign-view.js</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

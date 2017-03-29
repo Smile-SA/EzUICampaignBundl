@@ -1,0 +1,2 @@
+smilecampaign: { name: "Campagnes" }
+field_definition.smilecampaign.default_value: "Valeur par défaut"

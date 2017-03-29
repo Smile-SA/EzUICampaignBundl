@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-03-29T12:17:56Z" source-language="en" target-language="fr_FR" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="01da64ef1552e0f2e6931f2306b9184b3dab9393" resname="smileezuicampaign.navigationhub.campaign.title">
+        <source>Campagnes</source>
+        <target state="new">Campagnes</target>
+        <note>key: smileezuicampaign.navigationhub.campaign.title</note>
+        <jms:reference-file>./src/Smile/EzUICampaignBundle/Resources/public/js/views/services/plugins/smileez-uicampaign-navigationplugin.js</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
