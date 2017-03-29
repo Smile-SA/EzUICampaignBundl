@@ -203,6 +203,7 @@ class CampaignController extends AbstractCampaignController
                     $this->notify('campaign.campaign.created');
                 }
             } catch (MailchimpException $e) {
+                /** @Ignore */
                 $this->notifyError(
                     $e->getMessage(),
                     [],
@@ -243,6 +244,7 @@ class CampaignController extends AbstractCampaignController
         try {
             $campaign = $this->campaignService->get($campaignID);
         } catch (MailchimpException $e) {
+            /** @Ignore */
             $this->notifyError(
                 $e->getMessage(),
                 [],
@@ -258,6 +260,7 @@ class CampaignController extends AbstractCampaignController
                 $this->campaignService->delete($campaign['id']);
                 $this->notify('campaign.campaign.deleted');
             } catch (MailchimpException $e) {
+                /** @Ignore */
                 $this->notifyError(
                     $e->getMessage(),
                     [],

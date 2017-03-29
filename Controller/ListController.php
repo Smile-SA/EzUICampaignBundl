@@ -82,6 +82,7 @@ class ListController extends AbstractCampaignController
                     $this->notify('campaign.list.created');
                 }
             } catch (MailchimpException $e) {
+                /** @Ignore */
                 $this->notifyError(
                     $e->getMessage(),
                     [],
@@ -122,6 +123,7 @@ class ListController extends AbstractCampaignController
         try {
             $list = $this->listService->get($campaignListID);
         } catch (MailchimpException $e) {
+            /** @Ignore */
             $this->notifyError(
                 $e->getMessage(),
                 [],
@@ -137,6 +139,7 @@ class ListController extends AbstractCampaignController
                 $this->listService->delete($list['id']);
                 $this->notify('campaign.list.deleted');
             } catch (MailchimpException $e) {
+                /** @Ignore */
                 $this->notifyError(
                     $e->getMessage(),
                     [],
