@@ -8,6 +8,7 @@ use Smile\EzUICampaignBundle\Data\Mapper\CampaignFolderMapper;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignMapper;
 use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignActionDispatcher;
 use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignFolderActionDispatcher;
+use Smile\EzUICampaignBundle\Form\Type\CampaignDeleteType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignFolderType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignListDeleteType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignType;
@@ -117,7 +118,16 @@ class CampaignController extends AbstractCampaignController
      */
     protected function tabItemCampaigns($paramsTwig)
     {
+        $params['delete_forms_by_id'] = array();
         $params['campaigns'] = $this->campaignsService->get(0);
+
+        foreach ($params['campaigns']['campaigns'] as $campaign) {
+            $campaignID = $campaign['id'];
+            $params['delete_forms_by_id'][$campaignID] = $this->createForm(
+                CampaignDeleteType::class,
+                ['campaignID' => $campaignID]
+            )->createView();
+        }
 
         return $params;
     }
@@ -142,15 +152,15 @@ class CampaignController extends AbstractCampaignController
         return $params;
     }
 
-    public function viewAction($id, $mode = false)
+    public function viewAction($campaignID, $mode = false)
     {
         if ($mode == 'ajax') {
             $response = new JsonResponse();
-            $response->setData($this->campaignService->get($id, array('settings.title')));
+            $response->setData($this->campaignService->get($campaignID, array('settings.title')));
             return $response;
         } else {
             return $this->render('SmileEzUICampaignBundle:campaign:campaign/view.html.twig', [
-                'campaign' => $this->campaignService->get($id)
+                'campaign' => $this->campaignService->get($campaignID)
             ]);
         }
     }
@@ -159,15 +169,53 @@ class CampaignController extends AbstractCampaignController
     {
         if ($campaignID) {
             $campaign = $this->campaignService->get($campaignID);
+            $campaign = new Campaign([
+                'id' => $campaign['id'],
+                'list_id' => $campaign['recipients']['list_id'],
+                'subject_line' => $campaign['settings']['subject_line'],
+                'title' => $campaign['settings']['title'],
+                'from_name' => $campaign['settings']['from_name'],
+                'reply_to' => $campaign['settings']['reply_to'],
+                'folder_id' => $campaign['settings']['folder_id']
+            ]);
         } else {
-            $campaign = new Campaign(['settings' => ['title' => '_new_'], 'recipients' => ['list_id' => '_new_']]);
+            $campaign = new Campaign(['title' => '_new_']);
         }
 
         $data = (new CampaignMapper())->mapToFormData($campaign);
         $actionUrl = $this->generateUrl('smileezcampaign_campaign_edit', ['id' => $campaignID]);
+        $redirectUrl = $this->generateUrl('smileezcampaign_campaign', ['tabItem' => 'campaigns']);
         $form = $this->createForm(CampaignType::class, $data);
         $form->handleRequest($request);
         if ($form->isValid()) {
+            try {
+                if ($campaignID) {
+                    $this->campaignService->patch(
+                        $campaignID, $data->list_id, $data->subject_line, $data->title,
+                        $data->from_name, $data->reply_to, $data->folder_id
+                    );
+                    $this->notify('campaign.campaign.edited');
+                } else {
+                    $this->campaignService->post(
+                        $data->list_id, $data->subject_line, $data->title,
+                        $data->from_name, $data->reply_to, $data->folder_id
+                    );
+                    $this->notify('campaign.campaign.created');
+                }
+            } catch (MailchimpException $e) {
+                $this->notifyError(
+                    $e->getMessage(),
+                    [],
+                    'campaign'
+                );
+
+                return $this->render('SmileEzUICampaignBundle:campaign:campaign/edit.html.twig', [
+                    'form' => $form->createView(),
+                    'campaign' => $data,
+                    'actionUrl' => $actionUrl,
+                ]);
+            }
+
             $this->campaignActionDispatcher->dispatchFormAction(
                 $form,
                 $data,
@@ -177,7 +225,7 @@ class CampaignController extends AbstractCampaignController
                 return $response;
             }
 
-            return $this->redirectAfterFormPost($actionUrl);
+            return $this->redirectAfterFormPost($redirectUrl);
         }
 
         return $this->render('SmileEzUICampaignBundle:campaign:campaign/edit.html.twig', [
@@ -187,7 +235,53 @@ class CampaignController extends AbstractCampaignController
         ]);
     }
 
-    public function subscribeAction($id, Request $request)
+    public function deleteAction(Request $request, $campaignID)
+    {
+        $redirectUrl = $this->generateUrl('smileezcampaign_campaign', ['tabItem' => 'campaigns']);
+
+        $campaign = null;
+        try {
+            $campaign = $this->campaignService->get($campaignID);
+        } catch (MailchimpException $e) {
+            $this->notifyError(
+                $e->getMessage(),
+                [],
+                'campaign'
+            );
+            return $this->redirectToRouteAfterFormPost($redirectUrl);
+        }
+
+        $deleteForm = $this->createForm(CampaignDeleteType::class, ['campaignID' => $campaignID]);
+        $deleteForm->handleRequest($request);
+        if ($deleteForm->isValid()) {
+            try {
+                $this->campaignService->delete($campaign['id']);
+                $this->notify('campaign.campaign.deleted');
+            } catch (MailchimpException $e) {
+                $this->notifyError(
+                    $e->getMessage(),
+                    [],
+                    'campaign'
+                );
+            }
+
+            return $this->redirectAfterFormPost($redirectUrl);
+        }
+
+        // Form validation failed. Send errors as notifications.
+        foreach ($deleteForm->getErrors(true) as $error) {
+            $this->notifyErrorPlural(
+                $error->getMessageTemplate(),
+                $error->getMessagePluralization(),
+                $error->getMessageParameters(),
+                'campaign'
+            );
+        }
+
+        return $this->redirectAfterFormPost($redirectUrl);
+    }
+
+    public function subscribeAction($campaignID, Request $request)
     {
         $response = new JsonResponse();
 
@@ -201,7 +295,7 @@ class CampaignController extends AbstractCampaignController
                     'message' => 'not a valid email'
                 ));
             } else {
-                $this->campaignService->subscribe($id, $email);
+                $this->campaignService->subscribe($campaignID, $email);
             }
         } catch (MailchimpException $exception) {
             $response->setStatusCode(400);

@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CampaignCreateType extends AbstractType
+class CampaignDeleteType extends AbstractType
 {
     public function getName()
     {
@@ -17,7 +17,7 @@ class CampaignCreateType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'smilecampaign_campaign_create';
+        return 'smilecampaign_campaign_delete';
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -31,6 +31,7 @@ class CampaignCreateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('create', SubmitType::class, ['label' => 'campaign.create']);
+            ->add('campaignID', HiddenType::class)
+            ->add('delete', SubmitType::class, ['label' => 'campaign.delete']);
     }
 }

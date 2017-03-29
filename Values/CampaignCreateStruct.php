@@ -10,7 +10,7 @@ class CampaignCreateStruct extends CampaignStruct
 
     public $title;
 
-    public $fromName;
+    public $from_name;
 
     public $reply_to;
 

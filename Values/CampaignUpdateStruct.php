@@ -10,7 +10,7 @@ class CampaignUpdateStruct extends CampaignStruct
 
     public $title = null;
 
-    public $fromName = null;
+    public $from_name = null;
 
     public $reply_to = null;
 

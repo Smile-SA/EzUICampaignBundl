@@ -5,28 +5,30 @@ smileezcampaign_campaign:
         tabItem: "[a-z]+"
 
 smileezcampaign_campaign_view:
-    path: /campaign/campaign/view/{id}/{mode}
+    path: /campaign/campaign/view/{campaignID}/{mode}
     defaults: { _controller: smile.campaign.controller.campaign:viewAction, mode: false }
     requirements:
-        id: "[0-9a-z]+"
+        campaignID: "[0-9a-z]+"
 
 smileezcampaign_campaign_edit:
-    path: /campaign/campaign/edit/{id}
-    defaults: { _controller: smile.campaign.controller.campaign:editAction, id: ~ }
+    path: /campaign/campaign/edit/{campaignID}
+    defaults: { _controller: smile.campaign.controller.campaign:editAction, campaignID: ~ }
+
+smileezcampaign_campaign_delete:
+    path: /campaign/list/delete/{campaignID}
+    defaults: { _controller: smile.campaign.controller.campaign:deleteAction }
+    requirements:
+        campaignID: "[0-9a-z]+"
+
+smileezcampaign_campaign_subscribe:
+    path: /campaign/campaign/{campaignID}/subscribe
+    defaults: { _controller: smile.campaign.controller.campaign:subscribeAction }
+    requirements:
+        campaignID: "[0-9a-z]+"
 
 smileezcampaign_folder_edit:
     path: /campaign/folder/edit/{id}
     defaults: { _controller: smile.campaign.controller.campaign:editFolderAction, id: ~ }
-
-smileezcampaign_campaigns_new:
-    path: /campaign/campaign/new
-    defaults: { _controller: smile.campaign.controller.campaigns:newAction }
-
-smileezcampaign_campaign_subscribe:
-    path: /campaign/campaign/{id}/subscribe
-    defaults: { _controller: smile.campaign.controller.campaign:subscribeAction }
-    requirements:
-        id: "[0-9a-z]+"
 
 smileezcampaign_campaign_folders_new:
     path: /campaign/campaign/folder/new
@@ -45,11 +47,6 @@ smileezcampaign_list_edit:
 smileezcampaign_list_delete:
     path: /campaign/list/delete/{campaignListID}
     defaults: { _controller: smile.campaign.controller.list:deleteAction }
+    requirements:
+        campaignListID: "[0-9a-z]+"
 
-smileezcampaign_lists_new:
-    path: /campaign/list/new
-    defaults: { _controller: smile.campaign.controller.lists:newAction }
-
-smileezcampaign_lists_folder_new:
-    path: /campaign/list/folder/new
-    defaults: { _controller: smile.campaign.controller.lists:folderNewAction }

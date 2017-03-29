@@ -8,7 +8,15 @@ abstract class Campaign extends ValueObject
 {
     protected $id;
 
-    protected $recipients;
+    protected $list_id;
 
-    protected $settings;
+    protected $subject_line;
+
+    protected $title;
+
+    protected $from_name;
+
+    protected $reply_to;
+
+    protected $folder_id;
 }

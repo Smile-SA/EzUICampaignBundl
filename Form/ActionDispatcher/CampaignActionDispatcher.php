@@ -12,7 +12,6 @@ class CampaignActionDispatcher extends AbstractActionDispatcher
      */
     protected function configureOptions(OptionsResolver $resolver)
     {
-        // $resolver->setRequired('name');
     }
 
     /**

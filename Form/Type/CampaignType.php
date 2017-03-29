@@ -16,15 +16,15 @@ class CampaignType extends AbstractType
         $builder
             ->add(
                 $builder->create('recipients', 'form', array('virtual' => true))
-                    ->add('list_id', \Smile\EzUICampaignBundle\Form\Type\Field\CampaignListType::class, ['label' => 'campaign.campaign.list'])
+                    ->add('list_id', \Smile\EzUICampaignBundle\Form\Type\Field\CampaignListType::class, ['required' => true, 'label' => 'campaign.campaign.list'])
             )
             ->add(
                 $builder->create('settings', 'form', array('virtual' => true))
-                    ->add('subject_line', TextType::class, ['label' => 'campaign.campaign.subject_line'])
-                    ->add('title', TextType::class, ['label' => 'campaign.campaign.title'])
-                    ->add('fromName', TextType::class, ['label' => 'campaign.campaign.fromName'])
-                    ->add('reply_to', EmailType::class, ['label' => 'campaign.campaign.reply_to'])
-                    ->add('folder_id', \Smile\EzUICampaignBundle\Form\Type\Field\CampaignFolderType::class, ['label' => 'campaign.campaign.folder'])
+                    ->add('subject_line', TextType::class, ['required' => true, 'label' => 'campaign.campaign.subject_line'])
+                    ->add('title', EmailType::class, ['required' => true, 'label' => 'campaign.campaign.title'])
+                    ->add('from_name', TextType::class, ['required' => true, 'label' => 'campaign.campaign.from_name'])
+                    ->add('reply_to', EmailType::class, ['required' => true, 'label' => 'campaign.campaign.reply_to'])
+                    ->add('folder_id', \Smile\EzUICampaignBundle\Form\Type\Field\CampaignFolderType::class, ['required' => true, 'label' => 'campaign.campaign.folder_id'])
             )
             ->add('save', SubmitType::class, ['label' => 'campaign.save']);
     }
