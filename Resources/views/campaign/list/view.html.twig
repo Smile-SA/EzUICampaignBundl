@@ -27,6 +27,48 @@
                 <div class="smileezuicampaign-metadata-value">{{ list.name }}</div>
             </div>
 
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.company"|trans|desc("Company") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.contact.company }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.address"|trans|desc("Address1") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.contact.address1 }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.city"|trans|desc("City") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.contact.city }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.state"|trans|desc("State") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.contact.state }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.zip"|trans|desc("Zip") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.contact.zip }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.country"|trans|desc("Country") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.contact.country }}</div>
+            </div>
+
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.from_name"|trans|desc("From name") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.campaign_defaults.from_name }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.from_email"|trans|desc("From email") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.campaign_defaults.from_email }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.subject"|trans|desc("Subject") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.campaign_defaults.subject }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "list.language"|trans|desc("Language") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ list.campaign_defaults.language }}</div>
+            </div>
+
             <div class="ez-toolbar">
                 <a href="{{ path('smileezcampaign_list_edit', {'campaignListID': list.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'list.edit'|trans|desc("Edit") }}</a>
             </div>

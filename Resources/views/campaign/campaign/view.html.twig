@@ -24,7 +24,11 @@
         <section class="smileezuicampaign-view">
             <div class="smileezuicampaign-metadata">
                 <div class="smileezuicampaign-metadata-name">{{ "campaign.list_name"|trans|desc("List name") }}</div>
-                <div class="smileezuicampaign-metadata-value">{{ campaign.recipients.list_name }} [{{ campaign.recipients.list_id }}]</div>
+                <div class="smileezuicampaign-metadata-value">
+                    <a href="{{ path('smileezcampaign_list_view', {'campaignListID' : campaign.recipients.list_id}) }}">
+                        {{ campaign.recipients.list_name }} [{{ campaign.recipients.list_id }}]
+                    </a>
+                </div>
             </div>
             <div class="smileezuicampaign-metadata">
                 <div class="smileezuicampaign-metadata-name">{{ "campaign.subject_line"|trans|desc("Subject line") }}</div>
@@ -41,6 +45,10 @@
             <div class="smileezuicampaign-metadata">
                 <div class="smileezuicampaign-metadata-name">{{ "campaign.reply_to"|trans|desc("Reply to") }}</div>
                 <div class="smileezuicampaign-metadata-value">{{ campaign.settings.reply_to }}</div>
+            </div>
+            <div class="smileezuicampaign-metadata">
+                <div class="smileezuicampaign-metadata-name">{{ "campaign.folder"|trans|desc("Folder") }}</div>
+                <div class="smileezuicampaign-metadata-value">{{ campaign.settings.folder_id }}</div>
             </div>
 
             <div class="ez-toolbar">
