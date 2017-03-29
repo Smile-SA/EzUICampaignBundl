@@ -3,8 +3,8 @@
         <table class="ezconf-list pure-table pure-table-striped">
             <thead>
             <tr>
-                <th>{{ 'ID'|trans }}</th>
                 <th>{{ 'Name'|trans }}</th>
+                <th>{{ 'ID'|trans }}</th>
                 <th>{{ 'Date created'|trans }}</th>
                 <th>{{ 'Member count'|trans }}</th>
                 <th></th>
@@ -15,8 +15,8 @@
 
             {% for list in params.lists.lists %}
                 <tr>
-                    <td>{{ list.id }}</td>
                     <td><a href="{{ path("smileezcampaign_list_view", {"campaignListID": list.id}) }}">{{ list.name }}</a></td>
+                    <td>{{ list.id }}</td>
                     <td>{{ list.date_created }}</td>
                     <td>{{ list.stats.member_count }}</td>
                     <td><a href="{{ path("smileezcampaign_list_edit", {'campaignListID': list.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'campaign.edit'|trans }}</a></td>

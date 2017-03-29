@@ -3,8 +3,8 @@
         <table class="smileezuicampaign-list pure-table pure-table-striped">
             <thead>
             <tr>
-                <th>{{ 'ID'|trans }}</th>
                 <th>{{ 'Title'|trans }}</th>
+                <th>{{ 'ID'|trans }}</th>
                 <th>{{ 'Subject'|trans }}</th>
                 <th>{{ 'Create time'|trans }}</th>
                 <th>{{ 'Status'|trans }}</th>
@@ -21,8 +21,8 @@
             <tbody>
             {% for campaign in params.campaigns.campaigns %}
                 <tr>
-                    <td>{{ campaign.id }}</td>
                     <td><a href="{{ path("smileezcampaign_campaign_view", {"campaignID": campaign.id}) }}">{{ campaign.settings.title }}</a></td>
+                    <td>{{ campaign.id }}</td>
                     <td>{{ campaign.settings.subject_line }}</td>
                     <td>{{ campaign.create_time }}</td>
                     <td>{{ campaign.status }}</td>
