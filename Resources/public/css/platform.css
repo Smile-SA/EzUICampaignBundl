@@ -23,3 +23,7 @@
 .ez-view-serversideview .smileezuicampaign-view .smileezuicampaign-metadata-name {
     width: 250px;
 }
+
+.pure-form-aligned .pure-control-group div div {
+    margin-bottom: .5em;
+}
