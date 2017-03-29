@@ -3,7 +3,7 @@
 
 {% trans_default_domain "smileezuicampaign" %}
 
-{% set editTitle = campaign.new ? "campaign.campaign.create.title"|trans() : "campaign.list.campaign.title"|trans({"%identifier%": campaign.id}) %}
+{% set editTitle = campaign.new ? "campaign.campaign.create.title"|trans() : "campaign.campaign.edit.title"|trans({"%id%": campaign.id}) %}
 
 {% block title %}
     {{ editTitle }}
@@ -11,7 +11,7 @@
 
 {% block header_breadcrumbs %}
     {% set breadcrumb_items = [
-        {link: path('smileezcampaign_campaign'), label: 'Campaign'|trans},
+        {link: path('smileezcampaign_campaign', {'tabItem': 'campaigns'}), label: 'Campaigns'|trans},
         {link: null, label: editTitle}
     ] %}
     {{ parent() }}
