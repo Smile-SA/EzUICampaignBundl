@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Welp\MailchimpBundle\Exception\MailchimpException;
+use JMS\TranslationBundle\Annotation\Ignore;
 
 class CampaignController extends AbstractCampaignController
 {

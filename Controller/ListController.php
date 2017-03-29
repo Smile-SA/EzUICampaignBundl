@@ -2,7 +2,6 @@
 
 namespace Smile\EzUICampaignBundle\Controller;
 
-use EzSystems\RepositoryForms\Form\ActionDispatcher\ActionDispatcherInterface;
 use Smile\EzUICampaignBundle\Data\Mapper\CampaignListMapper;
 use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignListActionDispatcher;
 use Smile\EzUICampaignBundle\Form\Type\CampaignListDeleteType;
@@ -11,6 +10,7 @@ use Smile\EzUICampaignBundle\Service\ListService;
 use Smile\EzUICampaignBundle\Values\Core\CampaignList;
 use Symfony\Component\HttpFoundation\Request;
 use Welp\MailchimpBundle\Exception\MailchimpException;
+use JMS\TranslationBundle\Annotation\Ignore;
 
 class ListController extends AbstractCampaignController
 {
