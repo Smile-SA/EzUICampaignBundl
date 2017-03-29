@@ -1,57 +1,61 @@
-
-<table class="ezconf-list pure-table pure-table-striped">
-    <thead>
-        <tr>
-            <th>{{ 'ID'|trans }}</th>
-            <th>{{ 'Title'|trans }}</th>
-            <th>{{ 'Subject'|trans }}</th>
-            <th>{{ 'Create time'|trans }}</th>
-            <th>{{ 'Status'|trans }}</th>
-            <th>{{ 'Emails sent'|trans }}</th>
-            <th>{{ 'Send time'|trans }}</th>
-            <th>{{ 'List name'|trans }}</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for campaign in params.campaigns.campaigns %}
+<div class="ez-table-data is-flexible">
+    <div class="ez-table-data-container">
+        <table class="smileezuicampaign-list pure-table pure-table-striped">
+            <thead>
             <tr>
-                <td>{{ campaign.id }}</td>
-                <td><a href="{{ path("smileezcampaign_campaign_view", {"campaignID": campaign.id}) }}">{{ campaign.settings.title }}</a></td>
-                <td>{{ campaign.settings.subject_line }}</td>
-                <td>{{ campaign.create_time }}</td>
-                <td>{{ campaign.status }}</td>
-                <td>{{ campaign.emails_sent }}</td>
-                <td>{{ campaign.send_time }}</td>
-                <td>{{ campaign.recipients.list_name }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="{{ path("smileezcampaign_campaign_edit", {'campaignID': campaign.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'campaign.edit'|trans }}</a></td>
-                <td>
-                    {% set deleteForm = params.delete_forms_by_id[campaign.id] %}
-                    {{ form_start(deleteForm, {"action": path("smileezcampaign_campaign_delete", {"campaignID": campaign.id})}) }}
-                    {{ form_widget(deleteForm.campaignID) }}
-                    {{
-                        form_widget(
-                            deleteForm.delete,
-                            {
-                                "attr": {"class": "pure-button ez-button ez-remove-section-button ez-font-icon ez-button-delete"}
-                            }
-                        )
-                    }}
-                    {{ form_end(deleteForm) }}
-                </td>
+                <th>{{ 'ID'|trans }}</th>
+                <th>{{ 'Title'|trans }}</th>
+                <th>{{ 'Subject'|trans }}</th>
+                <th>{{ 'Create time'|trans }}</th>
+                <th>{{ 'Status'|trans }}</th>
+                <th>{{ 'Emails sent'|trans }}</th>
+                <th>{{ 'Send time'|trans }}</th>
+                <th>{{ 'List name'|trans }}</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+            {% for campaign in params.campaigns.campaigns %}
+                <tr>
+                    <td>{{ campaign.id }}</td>
+                    <td><a href="{{ path("smileezcampaign_campaign_view", {"campaignID": campaign.id}) }}">{{ campaign.settings.title }}</a></td>
+                    <td>{{ campaign.settings.subject_line }}</td>
+                    <td>{{ campaign.create_time }}</td>
+                    <td>{{ campaign.status }}</td>
+                    <td>{{ campaign.emails_sent }}</td>
+                    <td>{{ campaign.send_time }}</td>
+                    <td>{{ campaign.recipients.list_name }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="{{ path("smileezcampaign_campaign_edit", {'campaignID': campaign.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'campaign.edit'|trans }}</a></td>
+                    <td>
+                        {% set deleteForm = params.delete_forms_by_id[campaign.id] %}
+                        {{ form_start(deleteForm, {"action": path("smileezcampaign_campaign_delete", {"campaignID": campaign.id})}) }}
+                        {{ form_widget(deleteForm.campaignID) }}
+                        {{
+                        form_widget(
+                        deleteForm.delete,
+                        {
+                            "attr": {"class": "pure-button ez-button ez-remove-section-button ez-font-icon ez-button-delete"}
+                        }
+                        )
+                        }}
+                        {{ form_end(deleteForm) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-<p class="ez-table-data-buttons">
-    <a href="{{ path('smileezcampaign_campaign_edit') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'compaign.new'|trans }}</a>
-    <a href="{{ path('smileezcampaign_folder_edit') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'compaign.folder.new'|trans }}</a>
-</p>
+        <p class="ez-table-data-buttons">
+            <a href="{{ path('smileezcampaign_campaign_edit') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'compaign.new'|trans }}</a>
+            <a href="{{ path('smileezcampaign_folder_edit') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'compaign.folder.new'|trans }}</a>
+        </p>
+    </div>
+</div>
+

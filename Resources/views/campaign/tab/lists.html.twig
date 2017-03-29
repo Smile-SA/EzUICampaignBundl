@@ -1,44 +1,47 @@
+<div class="ez-table-data is-flexible">
+    <div class="ez-table-data-container">
+        <table class="ezconf-list pure-table pure-table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'ID'|trans }}</th>
+                <th>{{ 'Name'|trans }}</th>
+                <th>{{ 'Date created'|trans }}</th>
+                <th>{{ 'Member count'|trans }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
 
-<table class="ezconf-list pure-table pure-table-striped">
-    <thead>
-    <tr>
-        <th>{{ 'ID'|trans }}</th>
-        <th>{{ 'Name'|trans }}</th>
-        <th>{{ 'Date created'|trans }}</th>
-        <th>{{ 'Member count'|trans }}</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
+            {% for list in params.lists.lists %}
+                <tr>
+                    <td>{{ list.id }}</td>
+                    <td><a href="{{ path("smileezcampaign_list_view", {"campaignListID": list.id}) }}">{{ list.name }}</a></td>
+                    <td>{{ list.date_created }}</td>
+                    <td>{{ list.stats.member_count }}</td>
+                    <td><a href="{{ path("smileezcampaign_list_edit", {'campaignListID': list.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'campaign.edit'|trans }}</a></td>
+                    <td>
+                        {% set deleteForm = params.delete_forms_by_id[list.id] %}
+                        {{ form_start(deleteForm, {"action": path("smileezcampaign_list_delete", {"campaignListID": list.id})}) }}
+                        {{ form_widget(deleteForm.listID) }}
+                        {{
+                            form_widget(
+                                deleteForm.delete,
+                                {
+                                    "attr": {"class": "pure-button ez-button ez-remove-section-button ez-font-icon ez-button-delete"}
+                                }
+                            )
+                        }}
+                        {{ form_end(deleteForm) }}
+                    </td>
+                </tr>
+            {% endfor %}
 
-    {% for list in params.lists.lists %}
-        <tr>
-            <td>{{ list.id }}</td>
-            <td><a href="{{ path("smileezcampaign_list_view", {"campaignListID": list.id}) }}">{{ list.name }}</a></td>
-            <td>{{ list.date_created }}</td>
-            <td>{{ list.stats.member_count }}</td>
-            <td><a href="{{ path("smileezcampaign_list_edit", {'campaignListID': list.id}) }}" class="pure-button ez-button" data-icon="&#xe606;">{{ 'campaign.edit'|trans }}</a></td>
-            <td>
-                {% set deleteForm = params.delete_forms_by_id[list.id] %}
-                {{ form_start(deleteForm, {"action": path("smileezcampaign_list_delete", {"campaignListID": list.id})}) }}
-                {{ form_widget(deleteForm.listID) }}
-                {{
-                    form_widget(
-                        deleteForm.delete,
-                        {
-                            "attr": {"class": "pure-button ez-button ez-remove-section-button ez-font-icon ez-button-delete"}
-                        }
-                    )
-                }}
-                {{ form_end(deleteForm) }}
-            </td>
-        </tr>
-    {% endfor %}
+            </tbody>
+        </table>
 
-    </tbody>
-</table>
-
-<p class="ez-table-data-buttons">
-    <a href="{{ path('smileezcampaign_list_edit') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'list.new'|trans }}</a>
-</p>
+        <p class="ez-table-data-buttons">
+            <a href="{{ path('smileezcampaign_list_edit') }}" class="pure-button ez-button" data-icon="&#xe616;">{{ 'list.new'|trans }}</a>
+        </p>
+    </div>
+</div>
