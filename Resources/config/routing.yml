@@ -30,10 +30,6 @@ smileezcampaign_folder_edit:
     path: /campaign/folder/edit/{id}
     defaults: { _controller: smile.campaign.controller.campaign:editFolderAction, id: ~ }
 
-smileezcampaign_campaign_folders_new:
-    path: /campaign/campaign/folder/new
-    defaults: { _controller: smile.campaign.controller.campaigns:folderNewAction }
-
 smileezcampaign_list_view:
     path: /campaign/list/view/{campaignListID}
     defaults: { _controller: smile.campaign.controller.list:viewAction }
