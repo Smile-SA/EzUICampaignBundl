@@ -5,10 +5,22 @@ namespace Smile\EzUICampaignBundle\Service;
 use DrewM\MailChimp\MailChimp;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
+/**
+ * Class CampaignService
+ *
+ * @package Smile\EzUICampaignBundle\Service
+ */
 class CampaignService extends BaseService
 {
+    /** @var ListService $listService Campaign List service */
     protected $listService;
 
+    /**
+     * CampaignService constructor.
+     *
+     * @param MailChimp   $mailChimp MailChimp service
+     * @param ListService $listService Campaign List service
+     */
     public function __construct(
         MailChimp $mailChimp,
         ListService $listService
@@ -18,6 +30,14 @@ class CampaignService extends BaseService
         $this->listService = $listService;
     }
 
+    /**
+     * Retrive Campaign by ID
+     *
+     * @param int $campaignID Campaign ID
+     * @param array $fields Fields to return
+     * @return array Campaign informations
+     * @throws MailchimpException MailChimpException
+     */
     public function get($campaignID, $fields = array())
     {
         $campaign = $this->mailChimp->get('/campaigns/' . $campaignID, $fields);
@@ -29,6 +49,18 @@ class CampaignService extends BaseService
         return $campaign;
     }
 
+    /**
+     * Create new Campaign
+     *
+     * @param string $listID Campaign List ID
+     * @param string $subjectLine Subject line information
+     * @param string $title Title information
+     * @param string $fromName From name information
+     * @param string $replyTo Reply to information
+     * @param string $folderID Campaign Folder ID
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function post($listID, $subjectLine, $title, $fromName, $replyTo, $folderID)
     {
         $return = $this->mailChimp->post('/campaigns', array(
@@ -52,6 +84,19 @@ class CampaignService extends BaseService
         return $return;
     }
 
+    /**
+     * Update Campaign
+     *
+     * @param string $campaignID Campaign ID
+     * @param string $listID Campaign List ID
+     * @param string $subjectLine Subject line information
+     * @param string $title Title information
+     * @param string $fromName From name information
+     * @param string $replyTo Reply to information
+     * @param string $folderID Campaign Folder ID
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function patch($campaignID, $listID, $subjectLine, $title, $fromName, $replyTo, $folderID)
     {
         $return = $this->mailChimp->patch('/campaigns/' . $campaignID, array(
@@ -74,6 +119,13 @@ class CampaignService extends BaseService
         return $return;
     }
 
+    /**
+     * Delete Campaign
+     *
+     * @param string $campaignID Campaign ID
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function delete($campaignID)
     {
         $return = $this->mailChimp->delete('/campaigns/' . $campaignID, array());
@@ -85,6 +137,14 @@ class CampaignService extends BaseService
         return $return;
     }
 
+    /**
+     * Send Campaign test
+     *
+     * @param string $campaignID Campaign ID
+     * @param string $email email where test email is sent
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function test($campaignID, $email)
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/test', array(
@@ -99,6 +159,13 @@ class CampaignService extends BaseService
         return $return;
     }
 
+    /**
+     * Send Campaign
+     *
+     * @param string $campaignID Campaign ID
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function send($campaignID)
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/send', array());
@@ -110,6 +177,13 @@ class CampaignService extends BaseService
         return $return;
     }
 
+    /**
+     * Pause Campaign
+     *
+     * @param string $campaignID Campaign ID
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function pause($campaignID)
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/pause', array());
@@ -121,6 +195,13 @@ class CampaignService extends BaseService
         return $return;
     }
 
+    /**
+     * Resume Campaign
+     *
+     * @param string $campaignID Campaign ID
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function resume($campaignID)
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/resume', array());
@@ -132,6 +213,14 @@ class CampaignService extends BaseService
         return $return;
     }
 
+    /**
+     * Schedule Campaign
+     *
+     * @param string $campaignID Campaign ID
+     * @param $scheduleTime
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function schedule($campaignID, $scheduleTime)
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/schedule', array(
@@ -145,6 +234,13 @@ class CampaignService extends BaseService
         return $return;
     }
 
+    /**
+     * Remove Campaign schedule programmation
+     *
+     * @param string $campaignID Campaign ID
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function unschedule($campaignID)
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/unschedule', array());
@@ -156,6 +252,13 @@ class CampaignService extends BaseService
         return $return;
     }
 
+    /**
+     * Subscribe to a Campaign
+     *
+     * @param string $campaignID Campaign ID
+     * @param string $email member email
+     * @throws MailchimpException MailChimpException
+     */
     public function subscribe($campaignID, $email)
     {
         try {

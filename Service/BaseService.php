@@ -5,16 +5,32 @@ namespace Smile\EzUICampaignBundle\Service;
 use DrewM\MailChimp\MailChimp;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
+/**
+ * Class BaseService
+ *
+ * @package Smile\EzUICampaignBundle\Service
+ */
 Abstract class BaseService
 {
-    /** @var MailChimp $mailChimp */
+    /** @var MailChimp $mailChimp MailChimp service */
     protected $mailChimp;
 
+    /**
+     * BaseService constructor.
+     *
+     * @param MailChimp $mailChimp MailChimp service
+     */
     public function __construct(MailChimp $mailChimp)
     {
         $this->mailChimp = $mailChimp;
     }
 
+    /**
+     * Thorw a MailChimp Exception
+     *
+     * @param array $errorResponse array of error Response
+     * @throws MailchimpException MailChimpException
+     */
     protected function throwMailchimpError(array $errorResponse)
     {
         $errorArray = json_decode($errorResponse['body'], true);

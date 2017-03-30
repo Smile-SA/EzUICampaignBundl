@@ -2,8 +2,23 @@
 
 namespace Smile\EzUICampaignBundle\Service;
 
+use Welp\MailchimpBundle\Exception\MailchimpException;
+
+/**
+ * Class CampaignsService
+ *
+ * @package Smile\EzUICampaignBundle\Service
+ */
 class CampaignsService extends BaseService
 {
+    /**
+     * List Campgigns
+     *
+     * @param int $offset search offset
+     * @param int $count search limit
+     * @return array List of Campaigns
+     * @throws MailchimpException MailChimpException
+     */
     public function get($offset = 0, $count = 10)
     {
         $campaigns = $this->mailChimp->get('/campaigns', array(
@@ -21,6 +36,14 @@ class CampaignsService extends BaseService
         return $campaigns;
     }
 
+    /**
+     * Search Campgian
+     *
+     * @param string $query search query
+     * @return array List of Campaigns
+     * @param string $email member email
+     * @throws MailchimpException MailChimpException
+     */
     public function search($query)
     {
         $campaigns = $this->mailChimp->get('/search-campaigns', array(

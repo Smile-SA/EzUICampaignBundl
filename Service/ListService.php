@@ -2,8 +2,22 @@
 
 namespace Smile\EzUICampaignBundle\Service;
 
+use Welp\MailchimpBundle\Exception\MailchimpException;
+
+/**
+ * Class ListService
+ *
+ * @package Smile\EzUICampaignBundle\Service
+ */
 class ListService extends BaseService
 {
+    /**
+     * Retrive Campaign List information
+     *
+     * @param string $listID Campaign List ID
+     * @return array Campaign List information
+     * @throws MailchimpException MailChimpException
+     */
     public function get($listID)
     {
         $list = $this->mailChimp->get('/lists/' . $listID, array());
@@ -15,6 +29,24 @@ class ListService extends BaseService
         return $list;
     }
 
+    /**
+     * Create new Campaign List
+     *
+     * @param string $name Campaign List name
+     * @param string $company Campaign List contact company information
+     * @param string $address Campaign List contact address information
+     * @param string $city Campaign List contact city information
+     * @param string $state Campaign List contact state information
+     * @param string $zip Campaign List contact zip information
+     * @param string $country Campaign List contact country information
+     * @param string $permission_reminder Campaign List permission reminder
+     * @param string $from_name Campaign List default from name
+     * @param string $from_email Campaign List default from email
+     * @param string $subject Campaign List default subject
+     * @param string $language Campaign List default language
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function post(
         $name, $company, $address, $city, $state, $zip, $country, $permission_reminder,
         $from_name, $from_email, $subject, $language
@@ -47,6 +79,25 @@ class ListService extends BaseService
         return $return;
     }
 
+    /**
+     * Update Campaign List information
+     *
+     * @param string $listID Campaign List ID
+     * @param string $name Campaign List name
+     * @param string $company Campaign List contact company information
+     * @param string $address Campaign List contact address information
+     * @param string $city Campaign List contact city information
+     * @param string $state Campaign List contact state information
+     * @param string $zip Campaign List contact zip information
+     * @param string $country Campaign List contact country information
+     * @param string $permission_reminder Campaign List permission reminder
+     * @param string $from_name Campaign List default from name
+     * @param string $from_email Campaign List default from email
+     * @param string $subject Campaign List default subject
+     * @param string $language Campaign List default language
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function patch(
         $listID, $name, $company, $address, $city, $state, $zip, $country, $permission_reminder,
         $from_name, $from_email, $subject, $language
@@ -79,6 +130,13 @@ class ListService extends BaseService
         return $return;
     }
 
+    /**
+     * Delete Campaign List
+     *
+     * @param string $listID Campaign List ID
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function delete($listID)
     {
         $return = $this->mailChimp->delete('/lists/' . $listID, array());
@@ -90,6 +148,14 @@ class ListService extends BaseService
         return $return;
     }
 
+    /**
+     * Subscribe to Campaign List
+     *
+     * @param string $listID Campaign List ID
+     * @param string $email member email
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function subscribe($listID, $email)
     {
         $return = $this->mailChimp->post('/lists/' . $listID, array(
@@ -109,6 +175,14 @@ class ListService extends BaseService
         return $return;
     }
 
+    /**
+     * Unsubscribe to Campaign List
+     *
+     * @param string $listID Campaign List ID
+     * @param string $email member email
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
     public function unsubscribe($listID, $email)
     {
         $return = $this->mailChimp->post('/lists/' . $listID, array(
