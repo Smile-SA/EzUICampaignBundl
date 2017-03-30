@@ -77,7 +77,11 @@ Add in your layout reference to __smilecampaign.js__
 ## TODO
 
 * create campaign
+  * list form field
+  * folder form field
 * edit campaign
+  * list form field
+  * folder form field
 * delete campaign
 * send campaign
 * send campaign test
@@ -85,4 +89,4 @@ Add in your layout reference to __smilecampaign.js__
 * campaign pagination
 * list pagination
 * campaign fieldtype
-* add confirm box on delete action
+* add confirm box on delete/send action
