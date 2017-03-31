@@ -26,24 +26,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 use JMS\TranslationBundle\Annotation\Ignore;
 
+/**
+ * Class CampaignController
+ *
+ * @package Smile\EzUICampaignBundle\Controller
+ */
 class CampaignController extends AbstractCampaignController
 {
     /** @var string[] tab item names */
     protected $tabItems;
 
-    /** @var CampaignsService $campaignsService */
+    /** @var CampaignsService $campaignsService Campaigns service */
     protected $campaignsService;
 
-    /** @var CampaignService $campaignService */
+    /** @var CampaignService $campaignService Campaign service */
     protected $campaignService;
 
-    /** @var ListsService $listsService */
+    /** @var ListsService $listsService Lists service */
     protected $listsService;
 
-    /** @var CampaignFolderService $campaignFolderService */
+    /** @var CampaignFolderService $campaignFolderService Campaign Folder service */
     protected $campaignFolderService;
 
-    /** @var CampaignFoldersService $campaignFoldersService */
+    /** @var CampaignFoldersService $campaignFoldersService Campaign Folders service */
     protected $campaignFoldersService;
 
     /** @var CampaignActionDispatcher $campaignActionDispatcher */
@@ -96,6 +101,8 @@ class CampaignController extends AbstractCampaignController
     }
 
     /**
+     * Manage Campaigns Platform UI tabs
+     *
      * @param string $tabItem
      * @param array $paramsTwig
      * @param bool  $hasErrors
@@ -114,6 +121,8 @@ class CampaignController extends AbstractCampaignController
     }
 
     /**
+     * Display Platform UI Campaigns tab
+     *
      * @param $paramsTwig
      * @return array
      */
@@ -134,6 +143,8 @@ class CampaignController extends AbstractCampaignController
     }
 
     /**
+     * Display Platform UI Lists tab
+     *
      * @param $paramsTwig
      * @return array
      */
@@ -153,6 +164,13 @@ class CampaignController extends AbstractCampaignController
         return $params;
     }
 
+    /**
+     * Display Campaign informations
+     *
+     * @param string $campaignID Campaign ID
+     * @param bool $mode return json data if mode == 'ajax'
+     * @return JsonResponse|Response
+     */
     public function viewAction($campaignID, $mode = false)
     {
         if ($mode == 'ajax') {
@@ -166,6 +184,13 @@ class CampaignController extends AbstractCampaignController
         }
     }
 
+    /**
+     * Perform Campaign edit view
+     *
+     * @param Request $request
+     * @param string|null $campaignID Campaign ID
+     * @return \EzSystems\PlatformUIBundle\Http\FormProcessingDoneResponse|null|Response
+     */
     public function editAction(Request $request, $campaignID = null)
     {
         if ($campaignID) {
