@@ -9,11 +9,24 @@ YUI.add('smileez-uicampaign-appplugin', function (Y) {
                 type: Y.smileEzUICampaign.View
             };
 
+            app.views.smileezuicampaignCampaignEditView = {
+                type: Y.smileEzUICampaign.CampaignEditView
+            };
+
             app.route({
                 name: "smileezuiCampaignNavigation",
                 path: "/campaign/campaigns/tab",
                 view: "smileezuicampaignView",
                 service: Y.smileEzUICampaign.ViewService,
+                sideViews: {'navigationHub': true, 'discoveryBar': false},
+                callbacks: ['open', 'checkUser', 'handleSideViews', 'handleMainView'],
+            });
+
+            app.route({
+                name: "smileezuiCampaignCampaignEditNavigation",
+                path: "/admin/campaign/campaign/edit",
+                view: "smileezuicampaignCampaignEditView",
+                service: Y.smileEzUICampaign.CampaignEditViewService,
                 sideViews: {'navigationHub': true, 'discoveryBar': false},
                 callbacks: ['open', 'checkUser', 'handleSideViews', 'handleMainView'],
             });

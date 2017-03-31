@@ -3,19 +3,34 @@ system:
         yui:
             modules:
                 smileez-uicampaign-appplugin:
-                    requires: ['ez-pluginregistry', 'plugin', 'base', 'smileez-uicampaign-view', 'smileez-uicampaign-viewservice']
+                    requires:
+                        - 'ez-pluginregistry'
+                        - 'plugin'
+                        - 'base'
+                        - 'smileez-uicampaign-view'
+                        - 'smileez-uicampaign-campaignedit-view'
+                        - 'smileez-uicampaign-viewservice'
+                        - 'smileez-uicampaign-campaignedit-viewservice'
                     dependencyOf: ['ez-platformuiapp']
                     path: %smile_campaignfieldtype.public_dir%/js/apps/plugins/smileez-uicampaign-appplugin.js
                 smileez-uicampaign-navigationplugin:
                     requires: ['ez-pluginregistry', 'ez-viewservicebaseplugin', 'ez-navigationitemview']
                     dependencyOf: ['ez-navigationhubviewservice']
                     path: %smile_campaignfieldtype.public_dir%/js/views/services/plugins/smileez-uicampaign-navigationplugin.js
+
                 smileez-uicampaign-viewservice:
                     requires: ['ez-serversideviewservice']
                     path: %smile_campaignfieldtype.public_dir%/js/views/services/smileez-uicampaign-viewservice.js
+                smileez-uicampaign-campaignedit-viewservice:
+                    requires: ['ez-serversideviewservice']
+                    path: %smile_campaignfieldtype.public_dir%/js/views/services/smileez-uicampaign-campaignedit-viewservice.js
+
                 smileez-uicampaign-view:
-                    requires: ['ez-serversideview']
+                    requires: ['ez-serversideview', 'autocomplete', 'autocomplete-highlighters']
                     path: %smile_campaignfieldtype.public_dir%/js/views/smileez-uicampaign-view.js
+                smileez-uicampaign-campaignedit-view:
+                    requires: ['ez-serversideview']
+                    path: %smile_campaignfieldtype.public_dir%/js/views/smileez-uicampaign-campaignedit-view.js
 
 
                 ez-rawcontentview:
