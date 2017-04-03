@@ -21,7 +21,7 @@ class CampaignType extends AbstractType
             ->add(
                 $builder->create('settings', 'form', array('virtual' => true))
                     ->add('subject_line', TextType::class, ['required' => true, 'label' => 'campaign.campaign.subject_line'])
-                    ->add('title', EmailType::class, ['required' => true, 'label' => 'campaign.campaign.title'])
+                    ->add('title', TextType::class, ['required' => true, 'label' => 'campaign.campaign.title'])
                     ->add('from_name', TextType::class, ['required' => true, 'label' => 'campaign.campaign.from_name'])
                     ->add('reply_to', EmailType::class, ['required' => true, 'label' => 'campaign.campaign.reply_to'])
                     ->add('folder_id', \Smile\EzUICampaignBundle\Form\Type\Field\CampaignFolderType::class, ['required' => true, 'label' => 'campaign.campaign.folder_id'])

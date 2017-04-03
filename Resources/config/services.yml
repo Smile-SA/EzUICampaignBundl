@@ -71,6 +71,7 @@ services:
             - @smile.campaign.service.campaigns
             - @smile.campaign.service.campaign
             - @smile.campaign.service.lists
+            - @smile.campaign.service.list
             - @smile.campaign.service.campaign_folder
             - @smile.campaign.service.campaign_folders
             - @smile.campaign.action_dispatcher.campaign

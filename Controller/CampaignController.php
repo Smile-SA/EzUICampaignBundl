@@ -16,6 +16,7 @@ use Smile\EzUICampaignBundle\Service\CampaignFolderService;
 use Smile\EzUICampaignBundle\Service\CampaignFoldersService;
 use Smile\EzUICampaignBundle\Service\CampaignService;
 use Smile\EzUICampaignBundle\Service\CampaignsService;
+use Smile\EzUICampaignBundle\Service\ListService;
 use Smile\EzUICampaignBundle\Service\ListsService;
 use Smile\EzUICampaignBundle\Values\Core\Campaign;
 use Smile\EzUICampaignBundle\Values\Core\CampaignFolder;
@@ -45,6 +46,9 @@ class CampaignController extends AbstractCampaignController
     /** @var ListsService $listsService Lists service */
     protected $listsService;
 
+    /** @var ListService $listService */
+    protected $listService;
+
     /** @var CampaignFolderService $campaignFolderService Campaign Folder service */
     protected $campaignFolderService;
 
@@ -67,6 +71,7 @@ class CampaignController extends AbstractCampaignController
         CampaignsService $campaignsService,
         CampaignService $campaignService,
         ListsService $listsService,
+        ListService $listService,
         CampaignFolderService $campaignFolderService,
         CampaignFoldersService $campaignFoldersService,
         CampaignActionDispatcher $campaignActionDispatcher,
@@ -77,6 +82,7 @@ class CampaignController extends AbstractCampaignController
         $this->campaignsService = $campaignsService;
         $this->campaignService = $campaignService;
         $this->listsService = $listsService;
+        $this->listService = $listService;
         $this->campaignFolderService = $campaignFolderService;
         $this->campaignFoldersService = $campaignFoldersService;
         $this->campaignActionDispatcher = $campaignActionDispatcher;
@@ -195,36 +201,45 @@ class CampaignController extends AbstractCampaignController
     {
         if ($campaignID) {
             $campaign = $this->campaignService->get($campaignID);
+            $folder = $this->campaignFolderService->get($campaign['settings']['folder_id']);
+            $list = $this->listService->get($campaign['recipients']['list_id']);
+
             $campaign = new Campaign([
                 'id' => $campaign['id'],
-                'list_id' => $campaign['recipients']['list_id'],
+                'list_id' => $list['name'] . ' (id: ' . $list['id'] . ')',
                 'subject_line' => $campaign['settings']['subject_line'],
                 'title' => $campaign['settings']['title'],
                 'from_name' => $campaign['settings']['from_name'],
                 'reply_to' => $campaign['settings']['reply_to'],
-                'folder_id' => $campaign['settings']['folder_id']
+                'folder_id' => $folder['title'] . ' (id: ' . $folder['id'] . ')'
             ]);
         } else {
             $campaign = new Campaign(['title' => '_new_']);
         }
 
         $data = (new CampaignMapper())->mapToFormData($campaign);
-        $actionUrl = $this->generateUrl('smileezcampaign_campaign_edit', ['id' => $campaignID]);
+        $actionUrl = $this->generateUrl('smileezcampaign_campaign_edit', ['campaignID' => $campaignID]);
         $redirectUrl = $this->generateUrl('smileezcampaign_campaign', ['tabItem' => 'campaigns']);
         $form = $this->createForm(CampaignType::class, $data);
         $form->handleRequest($request);
         if ($form->isValid()) {
             try {
+                $expr = "`^[^.]+ \(id: ([a-z0-9]*)\)$`";
+                preg_match($expr, $data->list_id, $matches);
+                $listID = ($matches && isset($matches[1])) ? $matches[1] : false;
+                preg_match($expr, $data->folder_id, $matches);
+                $folderID = ($matches && isset($matches[1])) ? $matches[1] : false;
+
                 if ($campaignID) {
                     $this->campaignService->patch(
-                        $campaignID, $data->list_id, $data->subject_line, $data->title,
-                        $data->from_name, $data->reply_to, $data->folder_id
+                        $campaignID, $listID, $data->subject_line, $data->title,
+                        $data->from_name, $data->reply_to, $folderID
                     );
                     $this->notify('campaign.campaign.edited');
                 } else {
                     $this->campaignService->post(
-                        $data->list_id, $data->subject_line, $data->title,
-                        $data->from_name, $data->reply_to, $data->folder_id
+                        $listID, $data->subject_line, $data->title,
+                        $data->from_name, $data->reply_to, $folderID
                     );
                     $this->notify('campaign.campaign.created');
                 }

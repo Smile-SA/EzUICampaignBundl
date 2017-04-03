@@ -71,7 +71,7 @@ class CampaignService extends BaseService
             'settings' => array(
                 'subject_line' => $subjectLine,
                 'title' => $title,
-                'fromName' => $fromName,
+                'from_name' => $fromName,
                 'reply_to' => $replyTo,
                 'folder_id' => $folderID
             )
