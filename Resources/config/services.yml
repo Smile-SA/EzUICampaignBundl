@@ -81,6 +81,7 @@ services:
         class: %smile.campaign.controller.list.class%
         arguments:
             - @smile.campaign.service.list
+            - @smile.campaign.service.lists
             - @smile.campaign.action_dispatcher.list
         parent: ezsystems.platformui.controller.base
 

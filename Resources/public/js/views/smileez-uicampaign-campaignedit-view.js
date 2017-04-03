@@ -11,21 +11,19 @@ YUI.add('smileez-uicampaign-campaignedit-view', function (Y) {
             this.containerTemplate = '<div class="ez-view-smileezuicampaignview"/>';
 
             Y.one('body').addClass('yui3-skin-sam');
-console.log('ZZZ2');
         },
 
         render: function () {
             this.get('container').setContent(this.get('html'));
 
-console.log(this.get('container').one('#smilecampaign_campaign_edit_recipients_list_id'));
-
-            var list = this.get('container').one('#smilecampaign_campaign_edit_recipients_list_id');
-            if (list) {
-                list.plug(Y.Plugin.AutoComplete, {
+            var items = this.get('container').all('input[type="search"]');
+            items.each(function(item) {
+                item.plug(Y.Plugin.AutoComplete, {
                     resultHighlighter: 'phraseMatch',
-                    source: ['foo', 'bar', 'baz']
+                    maxResults: 10,
+                    source: item.getData('action') + '/{query}'
                 });
-            }
+            });
             return this;
         },
     });

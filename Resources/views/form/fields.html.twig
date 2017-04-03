@@ -6,12 +6,14 @@
 
 {% block campaignfolder_widget %}
     {% spaceless %}
-        {{ block('search_widget') }}
+        {%- set type = type|default('search') -%}
+        <input data-action="{{ path('smileezcampaign_folder_all') }}" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {% endspaceless %}
 {% endblock %}
 
 {% block campaignlist_widget %}
     {% spaceless %}
-        {{ block('search_widget') }}
+        {%- set type = type|default('search') -%}
+        <input data-action="{{ path('smileezcampaign_list_all') }}" type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
     {% endspaceless %}
 {% endblock %}

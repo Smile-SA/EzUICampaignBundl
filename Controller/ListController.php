@@ -7,7 +7,9 @@ use Smile\EzUICampaignBundle\Form\ActionDispatcher\CampaignListActionDispatcher;
 use Smile\EzUICampaignBundle\Form\Type\CampaignListDeleteType;
 use Smile\EzUICampaignBundle\Form\Type\CampaignListType;
 use Smile\EzUICampaignBundle\Service\ListService;
+use Smile\EzUICampaignBundle\Service\ListsService;
 use Smile\EzUICampaignBundle\Values\Core\CampaignList;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 use JMS\TranslationBundle\Annotation\Ignore;
@@ -17,15 +19,20 @@ class ListController extends AbstractCampaignController
     /** @var ListService $listService */
     protected $listService;
 
+    /** @var ListsService $listsService */
+    protected $listsService;
+
     /** @var CampaignListActionDispatcher $campaignListActionDispatcher */
     protected $campaignListActionDispatcher;
 
     public function __construct(
         ListService $listService,
+        ListsService $listsService,
         CampaignListActionDispatcher $campaignListActionDispatcher
     )
     {
         $this->listService = $listService;
+        $this->listsService = $listsService;
         $this->campaignListActionDispatcher = $campaignListActionDispatcher;
     }
 
@@ -161,5 +168,29 @@ class ListController extends AbstractCampaignController
         }
 
         return $this->redirectAfterFormPost($redirectUrl);
+    }
+
+    public function allAction($query)
+    {
+        $response = new JsonResponse();
+        $lists = array();
+        $offset = 0;
+        $limit = 10;
+
+        $campaignLists = $this->listsService->get($offset, $limit);
+        while (count($campaignLists['lists']) != 0) {
+            foreach ($campaignLists['lists'] as $list) {
+                if (strpos($list['name'], $query) !== false) {
+                    $lists[] = $list['name'] . ' (id: ' . $list['id'] . ')';
+                }
+            }
+
+            $offset += 10;
+            $campaignLists = $this->listsService->get($offset, $limit);
+        }
+
+        $response->setData($lists);
+
+        return $response;
     }
 }

@@ -378,6 +378,30 @@ class CampaignController extends AbstractCampaignController
         ]);
     }
 
+    public function allFoldersAction($query)
+    {
+        $response = new JsonResponse();
+        $folders = array();
+        $offset = 0;
+        $limit = 10;
+
+        $campaignFolders = $this->campaignFoldersService->get($offset, $limit);
+        while (count($campaignFolders['folders']) != 0) {
+            foreach ($campaignFolders['folders'] as $folder) {
+                if (strpos($folder['name'], $query) !== false) {
+                    $folders[] = $folder['name'] . ' (id: ' . $folder['id'] . ')';
+                }
+            }
+
+            $offset += 10;
+            $campaignFolders = $this->campaignFoldersService->get($offset, $limit);
+        }
+
+        $response->setData($folders);
+
+        return $response;
+    }
+
     protected function dispatchFormAction(
         ActionDispatcherInterface $actionDispatcher,
         Form $form,
