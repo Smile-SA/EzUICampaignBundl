@@ -201,17 +201,26 @@ class CampaignController extends AbstractCampaignController
     {
         if ($campaignID) {
             $campaign = $this->campaignService->get($campaignID);
-            $folder = $this->campaignFolderService->get($campaign['settings']['folder_id']);
-            $list = $this->listService->get($campaign['recipients']['list_id']);
+            try {
+                $folder = $this->campaignFolderService->get($campaign['settings']['folder_id']);
+            } catch (MailchimpException $e) {
+                $folder = false;
+            }
+
+            try {
+                $list = $this->listService->get($campaign['recipients']['list_id']);
+            } catch (MailchimpException $e) {
+                $list = false;
+            }
 
             $campaign = new Campaign([
                 'id' => $campaign['id'],
-                'list_id' => $list['name'] . ' (id: ' . $list['id'] . ')',
+                'list_id' => ($list && isset($list['name'])) ? $list['name'] . ' (id: ' . $list['id'] . ')' : false,
                 'subject_line' => $campaign['settings']['subject_line'],
                 'title' => $campaign['settings']['title'],
                 'from_name' => $campaign['settings']['from_name'],
                 'reply_to' => $campaign['settings']['reply_to'],
-                'folder_id' => $folder['title'] . ' (id: ' . $folder['id'] . ')'
+                'folder_id' => ($folder && isset($folder['name'])) ? $folder['name'] . ' (id: ' . $folder['id'] . ')' : false
             ]);
         } else {
             $campaign = new Campaign(['title' => '_new_']);

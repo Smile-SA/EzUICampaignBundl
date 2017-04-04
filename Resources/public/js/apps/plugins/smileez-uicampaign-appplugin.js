@@ -24,9 +24,11 @@ YUI.add('smileez-uicampaign-appplugin', function (Y) {
 
             app.route({
                 name: "smileezuiCampaignCampaignEditNavigation",
-                path: "/admin/campaign/campaign/edit",
+                path: "/campaign/campaign/edit",
                 view: "smileezuicampaignCampaignEditView",
+                // view: "smileezuicampaignView",
                 service: Y.smileEzUICampaign.CampaignEditViewService,
+                // service: Y.smileEzUICampaign.ViewService,
                 sideViews: {'navigationHub': true, 'discoveryBar': false},
                 callbacks: ['open', 'checkUser', 'handleSideViews', 'handleMainView'],
             });

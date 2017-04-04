@@ -11,14 +11,17 @@ YUI.add('smileez-uicampaign-view', function (Y) {
         },
 
         initializer: function () {
+console.log('campaign view initializer');
             this.containerTemplate = '<div class="ez-view-smileezuicampaignview"/>';
             Y.eZ.trans('smileezuicampaign.tab.campaigns.title', {}, 'smileezuicampaign');
             Y.eZ.trans('smileezuicampaign.tab.lists.title', {}, 'smileezuicampaign');
         },
 
         _navigateToLocation: function (e) {
+console.log('campaign view _navigateToLocation');
             var link = e.target;
 
+console.log('campaign view _navigateToLocation : ' + link.getData('route-name'));
             e.preventDefault(); // don't want the normal link behavior
 
             this.fire('navigateTo', {
@@ -26,6 +29,13 @@ YUI.add('smileez-uicampaign-view', function (Y) {
                     name: link.getData('route-name')
                 }
             });
+console.log('campaign view _navigateToLocation : navigateTo fired');
+        },
+
+        render: function () {
+console.log('campaign view render');
+            this.get('container').setContent(this.get('html'));
+            return this;
         },
     });
 });

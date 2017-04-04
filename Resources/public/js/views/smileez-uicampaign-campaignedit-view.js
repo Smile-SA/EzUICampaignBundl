@@ -8,12 +8,14 @@ YUI.add('smileez-uicampaign-campaignedit-view', function (Y) {
         },
 
         initializer: function () {
+console.log('campaign edit view initializer');
             this.containerTemplate = '<div class="ez-view-smileezuicampaignview"/>';
 
             Y.one('body').addClass('yui3-skin-sam');
         },
 
         render: function () {
+console.log('campaign edit view render');
             this.get('container').setContent(this.get('html'));
 
             var items = this.get('container').all('input[type="search"]');
